@@ -23,7 +23,6 @@ public class TopDownCharacter : MonoBehaviour
         Name = name;
         MaxHP = maxHp;
         AttackDelay = attackDelay;
-        CurrentHP = MaxHP;
     }
     public void ChangeCurrentProjectile()
     {
