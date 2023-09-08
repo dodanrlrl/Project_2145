@@ -17,10 +17,10 @@ public class TopDownPlayerController : TopDownCharacterController
     }
     public void OnLook(InputValue value)
     {
-        
-        Vector2 worldPos = _camera.ScreenToWorldPoint(value.Get<Vector2>().normalized);
+        Vector2 worldPos = _camera.ScreenToWorldPoint(value.Get<Vector2>());
         Vector2 lookDirection = (worldPos - (Vector2)transform.position).normalized;
-        CallLookEvent(lookDirection);
+        if (lookDirection.magnitude > 0.9f)
+            CallLookEvent(lookDirection);
     }
     public void OnShoot(InputValue value)
     {

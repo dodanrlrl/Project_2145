@@ -14,7 +14,7 @@ public class TopDownMovement : MonoBehaviour
         _controller = GetComponent<TopDownCharacterController>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _character = GetComponent<TopDownCharacter>();
     }
     private void FixedUpdate()

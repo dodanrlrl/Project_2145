@@ -25,6 +25,7 @@ public class TopDownCharacterController : MonoBehaviour
         else if(IsShooting && _timeSinceLastAttack >= Character.AttackDelay)
         {
             CallShootEvent();
+            _timeSinceLastAttack = 0;
         }
     }
 

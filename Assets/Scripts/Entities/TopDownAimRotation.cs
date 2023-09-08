@@ -20,7 +20,7 @@ public class TopDownAimRotation : MonoBehaviour
     public void OnAim(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        transform.Rotate(0, 0, rotZ);
+        transform.rotation = Quaternion.Euler(0, 0, -rotZ);
     }
 
 }

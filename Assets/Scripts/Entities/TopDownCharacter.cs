@@ -3,14 +3,21 @@ using UnityEngine;
 
 public class TopDownCharacter : MonoBehaviour
 {
-    public string Name { get; private set; }
-    public int CurrentHP { get; private set; }
-    public int MaxHP { get; private set; }
-    public float AttackDelay { get; private set; }
-    public float Speed { get; private set; }
-    public List<GameObject> Projectiles = new List<GameObject>();
-    public GameObject CurrentProjectile { get; private set; }
+    //public string Name { get; private set; }
+    //public int CurrentHP { get; private set; }
+    //public int MaxHP { get; private set; }
+    //public float AttackDelay { get; private set; }
+    //public float Speed { get; private set; }
+    //public List<GameObject> Projectiles = new List<GameObject>();
+    //public GameObject CurrentProjectile { get; private set; }
 
+    public string Name;
+    public int CurrentHP;
+    public int MaxHP;
+    public float AttackDelay;
+    public float Speed;
+    public List<GameObject> Projectiles = new List<GameObject>();
+    public GameObject CurrentProjectile;
     public void SetCharacterInfo(string name, int maxHp, float attackDelay)
     {
         Name = name;
