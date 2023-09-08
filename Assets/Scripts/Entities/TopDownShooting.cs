@@ -22,5 +22,6 @@ public class TopDownShooting : MonoBehaviour
         GameObject projectile = Instantiate(_character.CurrentProjectile);
         projectile.transform.position = Spawner.transform.position;
         projectile.transform.rotation = transform.rotation;
+        projectile.GetComponent<Rigidbody2D>().velocity  = transform.up * 5;
     }
 }
