@@ -7,16 +7,21 @@ public class GameManager : MonoBehaviour
 
     public static GameManager I;
     public GameObject player;
+    public bool IsPlaying = false;
+
 
     [Header("# Game Control")]
     public float gameTime;
 
     [Header("# Player Info")]
-    public float exp;
-    public int level;
-    public int kill; 
-    public int health;
-    public int maxHealth = 100;
+    public float playerExp;
+    public int playerLevel;
+    public int playerKill; 
+    public int playerHealth;
+    public int playerMaxHealth = 100;
+    public int playerLife = 3;
+
+    
 
     void Awake()
     {
@@ -26,25 +31,46 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        health = maxHealth;
+        playerHealth = playerMaxHealth;
+        gameTime = 0;
+        Time.timeScale = 1;
+        IsPlaying = true;
+        GameLogic();
     }
 
     void Update()
-    {
-        gameTime += Time.deltaTime;
-
+    {     
         // Test Code
-        kill++;
-        health--;
+        playerKill++;
+        playerHealth--;
         GetExp();
+    }
+    void GameLogic()
+    {        
+        while (IsPlaying)
+        {
+            gameTime += Time.deltaTime;
+            if (playerHealth == 0)
+            {
+                playerLife--;
+                if (playerLife <= 0)
+                {
+                    IsPlaying = false;
+                    Time.timeScale = 0;
+                    break;
+                    // GameEnd() 결과창 띄우기
+                }
+                playerHealth = playerMaxHealth;
+            }
+        }
     }
     public void GetExp()
     {
-        exp++;
-        if (exp == 100f)
+        playerExp++;
+        if (playerExp == 100f)
         {
-            level++;
-            exp = 0;
+            playerLevel++;
+            playerExp = 0;
         }
     }
 }
