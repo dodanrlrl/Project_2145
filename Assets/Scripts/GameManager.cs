@@ -41,29 +41,29 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Test Code
-        //playerKill++;
-        //playerHealth--;
-        //GetExp();
+        playerKill++;
+        playerHealth--;
+        GetExp();
         
     }
     void GameLogic()
     {        
-        while (IsPlaying)
-        {
-            gameTime += Time.deltaTime;
-            if (playerHealth == 0)
-            {
-                playerLife--;
-                if (playerLife <= 0)
-                {
-                    IsPlaying = false;
-                    Time.timeScale = 0;
-                    break;
-                    // GameEnd() °á°úÃ¢ ¶ç¿ì±â
-                }
-                playerHealth = playerMaxHealth;
-            }
-        }
+        //while (IsPlaying)
+        //{
+        //    gameTime += Time.deltaTime;
+        //    if (playerHealth == 0)
+        //    {
+        //        playerLife--;
+        //        if (playerLife <= 0)
+        //        {
+        //            IsPlaying = false;
+        //            Time.timeScale = 0;
+        //            break;
+        //            // GameEnd() °á°úÃ¢ ¶ç¿ì±â
+        //        }
+        //        playerHealth = playerMaxHealth;
+        //    }
+        //}
     }
     public void GetExp()
     {
