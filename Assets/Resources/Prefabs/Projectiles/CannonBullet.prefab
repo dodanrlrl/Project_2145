@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5006301978998655759}
   - component: {fileID: -7439669733451438438}
   m_Layer: 0
-  m_Name: CannonGunBullet
+  m_Name: CannonBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,5 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550a2e50ddc1f5c459bfd2c4056d5d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
-  Damage: 10
+  Speed: 0
+  Damage: 0
+  projectileType: 5

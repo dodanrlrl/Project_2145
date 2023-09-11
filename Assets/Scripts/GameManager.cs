@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour
     public int playerMaxHealth = 100;
     public int playerLife = 3;
 
-    
-
     void Awake()
     {
         if (_i == null)

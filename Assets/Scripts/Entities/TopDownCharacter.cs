@@ -3,33 +3,58 @@ using UnityEngine;
 
 public class TopDownCharacter : MonoBehaviour
 {
-    public int CurrentHP;
+    public int CurrentHP = 100;
     public int MaxHP = 100;
-    public float AttackDelay = 0.2f;
-    public float Speed = 5f;
-    public List<GameObject> Projectiles = new List<GameObject>();
-    public GameObject CurrentProjectile;
+    public float Speed = 5;
+    [SerializeField]
+    private List<Arm> _arms = new List<Arm>();
+    private int _currentArmIndex;
+    public bool isPowerUp;
 
-    public void SetCharacterInfo(int maxHp, float attackDelay, float speed)
+    private void Start()
+    {
+        _arms.AddRange(GetComponentsInChildren<Arm>());
+    }
+    public void SetCharacterInfo(int maxHp, float speed)
     {
         MaxHP = maxHp;
-        AttackDelay = attackDelay;
-        Speed = speed;
         CurrentHP = MaxHP;
+        Speed = speed;
     }
-    public void ChangeCurrentProjectile()
+    public void ChangeArm()
     {
-        if (Projectiles == null || Projectiles.Count == 0)
-            return;
-
-        int nextIndex = Projectiles.IndexOf(CurrentProjectile) + 1;
-        if (nextIndex >= Projectiles.Count)
+        if (_arms.Count <= 0)
         {
-            nextIndex = 0;
+            Debug.Log("무장이 없습니다.");
+            return;
         }
-        CurrentProjectile = Projectiles[nextIndex];
-
-        ObjectPool.Instance.InitializePoolObject();//총알 초기화
-        ObjectPool.Instance.MakeObjects(20);//초기화 된 총알 오브젝트 풀에 장전
+        _currentArmIndex++;
+        if (_currentArmIndex >= _arms.Count)
+            _currentArmIndex = 0;
+    }
+    public Arm GetCurrentArm()
+    {
+        if (_arms.Count <= 0)
+        {
+            Debug.Log("무장이 없습니다.");
+            return null;
+        }
+        return _arms[_currentArmIndex];
+    }
+    public void PowerUp()
+    {
+        if (isPowerUp)
+            return;
+        isPowerUp = true;
+        foreach (Arm arm in _arms)
+            arm.ProjectileType++;
+    }
+    public void PowerUpEnd()
+    {
+        if (!isPowerUp)
+            return;
+        isPowerUp = false;
+        foreach (Arm arm in _arms)
+            arm.ProjectileType--;
     }
 }

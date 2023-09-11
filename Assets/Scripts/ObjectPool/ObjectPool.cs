@@ -23,9 +23,9 @@ public class ObjectPool : MonoBehaviour
             return _i;
         }
     }
-    private GameObject poolingObj;
-    private Queue<Bullet> poolingObjQueue = new Queue<Bullet>();
-    private Queue<Bullet> changeBulletObjQueue = new Queue<Bullet>();//실험
+    public GameObject BaseBullet;
+    private Queue<Bullet> _poolingObjQueue = new Queue<Bullet>();
+    private Queue<Bullet> _changeBulletObjQueue = new Queue<Bullet>();//실험
 
     private void Awake()
     {
@@ -34,52 +34,53 @@ public class ObjectPool : MonoBehaviour
         else if (_i != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+    }
+    private void Start()
+    {
         MakeObjects(20);
     }
 
-    private Bullet CreateObj()//지정된 총알 생성
+    private Bullet CreateObj()//총알 생성
     {
-        TopDownCharacter character = GameManager.Instance.player.GetComponent<TopDownCharacter>();
-
-        poolingObj = character.CurrentProjectile;
-        Bullet temp = Instantiate(poolingObj, transform).GetComponent<Bullet>();
-        temp.gameObject.SetActive(false);
-        return temp;
+        Bullet bullet = Instantiate(BaseBullet, transform).GetComponent<Bullet>();
+        bullet.gameObject.SetActive(false);
+        return bullet;
     }
 
     public void MakeObjects(int count)//오브젝트 풀에 총알 장전
     {
         for(int i = 0; i < count; i++) 
         {
-            poolingObjQueue.Enqueue(CreateObj());
+            _poolingObjQueue.Enqueue(CreateObj());
         }
     }
 
-    public void InitializePoolObject()//총알이 변경되었을때 오브젝트풀안과 발사된 총알 초기화
+    //***** 풀에서는 기본 총알만 빌려주고 총알에 관한 정보는 발사할 때 TopDownShooting에서 세팅할 예정******
+    //public void InitializePoolObject()//총알이 변경되었을때 오브젝트풀안과 발사된 총알 초기화
+    //{
+    //    GameObject[] bullets;
+
+    //    _poolingObjQueue.Clear();
+
+    //    bullets = GameObject.FindGameObjectsWithTag("Bullet");//이미 발사된 총알 삭제
+
+    //    foreach (GameObject bullet in bullets)
+    //    {
+    //        Destroy(bullet);
+    //    }
+
+    //    GameObject forDestroy = Instance.gameObject;//오브젝트 풀 안에 있는 총알 삭제
+    //    foreach (Transform child in forDestroy.transform)
+    //    {
+    //        Destroy(child.gameObject);
+    //    }
+    //}
+
+    public Bullet GetObject()//총알을 발사할때 오브젝트 풀안에서 꺼내오고 부족하면 새로 생성
     {
-        GameObject[] bullets;
-
-        poolingObjQueue.Clear();
-
-        bullets = GameObject.FindGameObjectsWithTag("Bullet");//이미 발사된 총알 삭제
-
-        foreach (GameObject bullet in bullets)
+        if(Instance._poolingObjQueue.Count > 0)
         {
-            Destroy(bullet);
-        }
-
-        GameObject forDestroy = Instance.gameObject;//오브젝트 풀 안에 있는 총알 삭제
-        foreach (Transform child in forDestroy.transform)
-        {
-            Destroy(child.gameObject);
-        }
-    }
-
-    public static Bullet GetObject()//총알을 발사할때 오브젝트 풀안에서 꺼내오고 부족하면 새로 생성
-    {
-        if(Instance.poolingObjQueue.Count > 0)
-        {
-           Bullet obj = Instance.poolingObjQueue.Dequeue();
+           Bullet obj = Instance._poolingObjQueue.Dequeue();
            obj.transform.SetParent(null);
            obj.gameObject.SetActive(true);
 
@@ -101,7 +102,7 @@ public class ObjectPool : MonoBehaviour
         bullet.transform.position = Vector2.zero;
         bullet.transform.SetParent(Instance.transform);
 
-        Instance.poolingObjQueue.Enqueue(bullet);
+        Instance._poolingObjQueue.Enqueue(bullet);
 
     }
 

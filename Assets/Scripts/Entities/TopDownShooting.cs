@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,6 @@ public class TopDownShooting : MonoBehaviour
 {
     private TopDownCharacterController _controller;
     private TopDownCharacter _character;
-    public GameObject Spawner;
 
     private void Awake()
     {
@@ -19,9 +19,15 @@ public class TopDownShooting : MonoBehaviour
     }
     public void Shoot()
     {
-        Bullet bullet = ObjectPool.GetObject();//오브젝트 풀 안에있는 총알 가져옴
-        bullet.transform.position = Spawner.transform.position;
-        bullet.transform.rotation = transform.rotation;
-        bullet.SetDirection(transform.up);
+        Arm arm = _character.GetCurrentArm();
+        foreach (GameObject Spawner in arm.Spawners)
+        {
+            Bullet bullet = ObjectPool.Instance.GetObject();//오브젝트 풀 안에있는 총알 가져옴
+            bullet.transform.position = Spawner.transform.position;
+            bullet.SetBulletInfo(arm.AttackPower, arm.ProjectileLaunchSpeed, arm.ProjectileType);
+            bullet.SetSpriteAndScale();
+            bullet.Move(transform.up);
+        }
     }
+
 }
