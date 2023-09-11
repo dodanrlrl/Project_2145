@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public int playerHealth;
     public int playerMaxHealth = 100;
     public int playerLife = 3;
+    public int playerShield = 0;
+    public int playerMaxShield = 200;
+
 
     
 
