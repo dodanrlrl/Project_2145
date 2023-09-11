@@ -38,7 +38,8 @@ public class TopDownCharacter : MonoBehaviour
         }
         CurrentProjectile = Projectiles[nextIndex];
 
-        GameObject.Find("ObjectPool").GetComponent<ObjectPool>().InitializePoolObject();//총알 초기화
-        GameObject.Find("ObjectPool").GetComponent<ObjectPool>().Init(3);//초기화 된 총알 오브젝트 풀에 장전
+        ObjectPool objectpool = ObjectPool.Instance;//GameObject.Find("ObjectPool").GetComponent<ObjectPool>();
+        objectpool.InitializePoolObject();//총알 초기화
+        objectpool.Init(3);//초기화 된 총알 오브젝트 풀에 장전
     }
 }
