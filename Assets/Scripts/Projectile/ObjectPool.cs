@@ -1,30 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public class ObjectPool : MonoBehaviour
 {
+    public TopDownCharacter _character;
     public static ObjectPool Instance;
-    public GameObject poolingObj;
+    private GameObject poolingObj;
     private Queue<Bullet> poolingObjQueue = new Queue<Bullet>();
+    private Queue<Bullet> changeBulletObjQueue = new Queue<Bullet>();//실험
 
     private void Awake()
     {
         Instance = this;
-        Init(10);
+        Init(3);
     }
 
-    private Bullet CreateObj()
-    { 
+    private Bullet CreateObj()//지정된 총알 생성
+    {
+        poolingObj = _character.CurrentProjectile;
         Bullet temp = Instantiate(poolingObj, transform).GetComponent<Bullet>();
         temp.gameObject.SetActive(false);
         return temp;
     }
 
-    private void Init(int count)
+    public void Init(int count)//오브젝트 풀에 총알 장전
     {
         for(int i = 0; i < count; i++) 
         {
@@ -32,7 +37,27 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public static Bullet GetObject()
+    public void InitializePoolObject()//총알이 변경되었을때 오브젝트풀안과 발사된 총알 초기화
+    {
+        GameObject[] bullets;
+
+        poolingObjQueue.Clear();
+
+        bullets = GameObject.FindGameObjectsWithTag("Bullet");//이미 발사된 총알 삭제
+
+        foreach (GameObject bullet in bullets)
+        {
+            Destroy(bullet);
+        }
+
+        GameObject forDestroy = Instance.gameObject;//오브젝트 풀 안에 있는 총알 삭제
+        foreach (Transform child in forDestroy.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    public static Bullet GetObject()//총알을 발사할때 오브젝트 풀안에서 꺼내오고 부족하면 새로 생성
     {
         if(Instance.poolingObjQueue.Count > 0)
         {
@@ -52,7 +77,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public static void ReturnObj(Bullet bullet)
+    public static void ReturnObj(Bullet bullet)//발사된 총알을 다시 오브젝트 풀안으로 반환
     {
         bullet.gameObject.SetActive(false);
         bullet.transform.position = Vector2.zero;

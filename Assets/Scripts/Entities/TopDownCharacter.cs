@@ -18,6 +18,7 @@ public class TopDownCharacter : MonoBehaviour
     public float Speed;
     public List<GameObject> Projectiles = new List<GameObject>();
     public GameObject CurrentProjectile;
+
     public void SetCharacterInfo(string name, int maxHp, float attackDelay)
     {
         Name = name;
@@ -36,5 +37,8 @@ public class TopDownCharacter : MonoBehaviour
             nextIndex = 0;
         }
         CurrentProjectile = Projectiles[nextIndex];
+
+        GameObject.Find("ObjectPool").GetComponent<ObjectPool>().InitializePoolObject();//총알 초기화
+        GameObject.Find("ObjectPool").GetComponent<ObjectPool>().Init(3);//초기화 된 총알 오브젝트 풀에 장전
     }
 }

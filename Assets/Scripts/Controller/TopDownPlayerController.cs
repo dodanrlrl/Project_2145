@@ -25,5 +25,6 @@ public class TopDownPlayerController : TopDownCharacterController
     public void OnShoot(InputValue value)
     {
         IsShooting = value.isPressed;
+
     }
 }

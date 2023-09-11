@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class Bullet : MonoBehaviour
 {
     private float speed = 10f;
-    public void DestroyBulletInvoke()
+    public void DestroyBulletInvoke()//오브젝트 풀 안으로 반환하는 시간 설정
     {
         Invoke(nameof(DestroyBullet), 5f);
     }
@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
    
     void Update()
     {
-        transform.position += new Vector3(0, speed * Time.deltaTime,0);
+        //transform.position += new Vector3(0, speed * Time.deltaTime,0);//총알 속도설정
+        this.GetComponent<Rigidbody2D>().velocity = transform.up * 5;
     }
 }

@@ -22,7 +22,7 @@ public class TopDownCharacterController : MonoBehaviour
         {
             _timeSinceLastAttack += Time.deltaTime;
         }
-        else if(IsShooting && _timeSinceLastAttack >= Character.AttackDelay)
+        else if (IsShooting && _timeSinceLastAttack >= Character.AttackDelay)
         {
             CallShootEvent();
             _timeSinceLastAttack = 0;
