@@ -7,7 +7,7 @@ public class LaserBlue : ProjectileBase
 
     private void Start()
     {
-        InitializeProjectile(3f,10f);
+        InitializeProjectile(3f, 5f);
     }
     void Update()
     {

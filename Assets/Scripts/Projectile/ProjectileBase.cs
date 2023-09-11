@@ -23,6 +23,6 @@ public class ProjectileBase : MonoBehaviour
 
     protected void MoveProjectile()
     {
-        this.GetComponent<Rigidbody2D>().velocity = transform.up * 5;
+        this.GetComponent<Rigidbody2D>().velocity = transform.up * m_speed;
     }
 }
