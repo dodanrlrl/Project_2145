@@ -39,11 +39,12 @@ public class GameManager : MonoBehaviour
     }
 
     void Update()
-    {     
+    {
         // Test Code
-        playerKill++;
-        playerHealth--;
-        GetExp();
+        //playerKill++;
+        //playerHealth--;
+        //GetExp();
+        
     }
     void GameLogic()
     {        

@@ -20,4 +20,12 @@ public class Bullet : MonoBehaviour
         //transform.position += new Vector3(0, speed * Time.deltaTime,0);//총알 속도설정
         this.GetComponent<Rigidbody2D>().velocity = transform.up * 5;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)//적과 충돌 했을때
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            DestroyBullet();
+        }
+    }
 }
