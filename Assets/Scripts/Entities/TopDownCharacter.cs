@@ -3,27 +3,18 @@ using UnityEngine;
 
 public class TopDownCharacter : MonoBehaviour
 {
-    //public string Name { get; private set; }
-    //public int CurrentHP { get; private set; }
-    //public int MaxHP { get; private set; }
-    //public float AttackDelay { get; private set; }
-    //public float Speed { get; private set; }
-    //public List<GameObject> Projectiles = new List<GameObject>();
-    //public GameObject CurrentProjectile { get; private set; }
-
-    public string Name;
     public int CurrentHP;
-    public int MaxHP;
-    public float AttackDelay;
-    public float Speed;
+    public int MaxHP = 100;
+    public float AttackDelay = 0.2f;
+    public float Speed = 5f;
     public List<GameObject> Projectiles = new List<GameObject>();
     public GameObject CurrentProjectile;
 
-    public void SetCharacterInfo(string name, int maxHp, float attackDelay)
+    public void SetCharacterInfo(int maxHp, float attackDelay, float speed)
     {
-        Name = name;
         MaxHP = maxHp;
         AttackDelay = attackDelay;
+        Speed = speed;
         CurrentHP = MaxHP;
     }
     public void ChangeCurrentProjectile()
@@ -38,7 +29,7 @@ public class TopDownCharacter : MonoBehaviour
         }
         CurrentProjectile = Projectiles[nextIndex];
 
-        GameObject.Find("ObjectPool").GetComponent<ObjectPool>().InitializePoolObject();//총알 초기화
-        GameObject.Find("ObjectPool").GetComponent<ObjectPool>().Init(3);//초기화 된 총알 오브젝트 풀에 장전
+        ObjectPool.Instance.InitializePoolObject();//총알 초기화
+        ObjectPool.Instance.MakeObjects(20);//초기화 된 총알 오브젝트 풀에 장전
     }
 }

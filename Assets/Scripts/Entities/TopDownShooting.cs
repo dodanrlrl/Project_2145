@@ -19,14 +19,9 @@ public class TopDownShooting : MonoBehaviour
     }
     public void Shoot()
     {
-        //GameObject projectile = Instantiate(_character.CurrentProjectile);
-        //projectile.transform.position = Spawner.transform.position;
-        //projectile.transform.rotation = transform.rotation;
-        //projectile.GetComponent<Rigidbody2D>().velocity = transform.up * 5;
-
         Bullet bullet = ObjectPool.GetObject();//오브젝트 풀 안에있는 총알 가져옴
         bullet.transform.position = Spawner.transform.position;
         bullet.transform.rotation = transform.rotation;
-        bullet.DestroyBulletInvoke();//가져온 총알을 다시 반환
+        bullet.SetDirection(transform.up);
     }
 }

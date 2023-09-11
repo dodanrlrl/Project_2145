@@ -5,19 +5,30 @@ using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
 {
-    private float speed = 10f;
-    public void DestroyBulletInvoke()//오브젝트 풀 안으로 반환하는 시간 설정
+    public float Speed;
+    public int Damage;
+    private Rigidbody2D Rigidbody;
+
+    private void Awake()
     {
-        Invoke(nameof(DestroyBullet), 5f);
+        Rigidbody = GetComponent<Rigidbody2D>();
     }
     private void DestroyBullet()
     {
-        ObjectPool.ReturnObj(this);
+        ObjectPool.Instance.ReturnObj(this);
     }
-   
-    void Update()
+    public void SetDirection(Vector2 Direction)
     {
-        //transform.position += new Vector3(0, speed * Time.deltaTime,0);//총알 속도설정
-        this.GetComponent<Rigidbody2D>().velocity = transform.up * 5;
+        transform.up = Direction;
+        Rigidbody.velocity = Direction * Speed;
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player")
+            ; //Todo
+        else if (collision.transform.tag == "Enemy")
+            ; //TOdo
+        else if (collision.transform.tag == "Boundary")
+            DestroyBullet();
     }
 }

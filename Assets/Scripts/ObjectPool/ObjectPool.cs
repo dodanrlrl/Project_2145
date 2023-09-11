@@ -9,7 +9,6 @@ using UnityEngine.UIElements;
 
 public class ObjectPool : MonoBehaviour
 {
-    public TopDownCharacter _character;
     private static ObjectPool _i;
     public static ObjectPool Instance
     {
@@ -19,7 +18,7 @@ public class ObjectPool : MonoBehaviour
             {
                 _i = FindObjectOfType<ObjectPool>();
                 if (_i == null)
-                    Debug.Log("오브젝트 풀이 없습니다.");
+                    Debug.Log($"오브젝트 풀이 없습니다.");
             }
             return _i;
         }
@@ -35,18 +34,20 @@ public class ObjectPool : MonoBehaviour
         else if (_i != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-        Init(3);
+        MakeObjects(20);
     }
 
     private Bullet CreateObj()//지정된 총알 생성
     {
-        poolingObj = _character.CurrentProjectile;
+        TopDownCharacter character = GameManager.Instance.player.GetComponent<TopDownCharacter>();
+
+        poolingObj = character.CurrentProjectile;
         Bullet temp = Instantiate(poolingObj, transform).GetComponent<Bullet>();
         temp.gameObject.SetActive(false);
         return temp;
     }
 
-    public void Init(int count)//오브젝트 풀에 총알 장전
+    public void MakeObjects(int count)//오브젝트 풀에 총알 장전
     {
         for(int i = 0; i < count; i++) 
         {
@@ -94,7 +95,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public static void ReturnObj(Bullet bullet)//발사된 총알을 다시 오브젝트 풀안으로 반환
+    public void ReturnObj(Bullet bullet)//발사된 총알을 다시 오브젝트 풀안으로 반환
     {
         bullet.gameObject.SetActive(false);
         bullet.transform.position = Vector2.zero;
