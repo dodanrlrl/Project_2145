@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         gameTime = 0;
         Time.timeScale = 1;
         IsPlaying = true;
-        GameLogic();
+        //GameLogic();
     }
 
     void Update()

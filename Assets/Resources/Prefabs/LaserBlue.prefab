@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 9181591865968505259}
   - component: {fileID: 3798934619368901986}
   - component: {fileID: 6479414122658111396}
-  - component: {fileID: 2021393877212447274}
   - component: {fileID: -1025638608072575951}
+  - component: {fileID: -8127158730004066157}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: LaserBlue
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,19 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &2021393877212447274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488569347644785719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550a2e50ddc1f5c459bfd2c4056d5d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Constraints: 4
 --- !u!58 &-1025638608072575951
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -155,9 +143,21 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.185
+--- !u!114 &-8127158730004066157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488569347644785719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c4b4cad50c65e40aa274cf7def39ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

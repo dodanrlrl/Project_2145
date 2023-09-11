@@ -12,8 +12,7 @@ public class ObjectPool : MonoBehaviour
     public TopDownCharacter _character;
     public static ObjectPool Instance;
     private GameObject poolingObj;
-    private Queue<Bullet> poolingObjQueue = new Queue<Bullet>();
-    private Queue<Bullet> changeBulletObjQueue = new Queue<Bullet>();//실험
+    private Queue<ProjectileBase> poolingObjQueue = new Queue<ProjectileBase>();
 
     private void Awake()
     {
@@ -21,10 +20,10 @@ public class ObjectPool : MonoBehaviour
         Init(3);
     }
 
-    private Bullet CreateObj()//지정된 총알 생성
+    private ProjectileBase CreateObj()//지정된 총알 생성
     {
         poolingObj = _character.CurrentProjectile;
-        Bullet temp = Instantiate(poolingObj, transform).GetComponent<Bullet>();
+        ProjectileBase temp = Instantiate(poolingObj, transform).GetComponent<ProjectileBase>();
         temp.gameObject.SetActive(false);
         return temp;
     }
@@ -39,15 +38,15 @@ public class ObjectPool : MonoBehaviour
 
     public void InitializePoolObject()//총알이 변경되었을때 오브젝트풀안과 발사된 총알 초기화
     {
-        GameObject[] bullets;
+        GameObject[] projectiles;
 
         poolingObjQueue.Clear();
 
-        bullets = GameObject.FindGameObjectsWithTag("Bullet");//이미 발사된 총알 삭제
+        projectiles = GameObject.FindGameObjectsWithTag("Projectile");//이미 발사된 총알 삭제
 
-        foreach (GameObject bullet in bullets)
+        foreach (GameObject projectile in projectiles)
         {
-            Destroy(bullet);
+            Destroy(projectile);
         }
 
         GameObject forDestroy = Instance.gameObject;//오브젝트 풀 안에 있는 총알 삭제
@@ -57,11 +56,11 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public static Bullet GetObject()//총알을 발사할때 오브젝트 풀안에서 꺼내오고 부족하면 새로 생성
+    public static ProjectileBase GetObject()//총알을 발사할때 오브젝트 풀안에서 꺼내오고 부족하면 새로 생성
     {
         if(Instance.poolingObjQueue.Count > 0)
         {
-           Bullet obj = Instance.poolingObjQueue.Dequeue();
+           ProjectileBase obj = Instance.poolingObjQueue.Dequeue();
            obj.transform.SetParent(null);
            obj.gameObject.SetActive(true);
 
@@ -69,7 +68,7 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-            Bullet newObj = Instance.CreateObj();
+            ProjectileBase newObj = Instance.CreateObj();
             newObj.transform.SetParent(null);
             newObj.gameObject.SetActive(true);
 
@@ -77,13 +76,13 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public static void ReturnObj(Bullet bullet)//발사된 총알을 다시 오브젝트 풀안으로 반환
+    public static void ReturnObj(ProjectileBase projectile)//발사된 총알을 다시 오브젝트 풀안으로 반환
     {
-        bullet.gameObject.SetActive(false);
-        bullet.transform.position = Vector2.zero;
-        bullet.transform.SetParent(Instance.transform);
+        projectile.gameObject.SetActive(false);
+        projectile.transform.position = Vector2.zero;
+        projectile.transform.SetParent(Instance.transform);
 
-        Instance.poolingObjQueue.Enqueue(bullet);
+        Instance.poolingObjQueue.Enqueue(projectile);
 
     }
 
