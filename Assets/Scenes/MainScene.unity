@@ -2209,8 +2209,6 @@ MonoBehaviour:
   playerHealth: 0
   playerMaxHealth: 100
   playerLife: 3
-  playerShield: 0
-  playerMaxShield: 200
 --- !u!4 &1204628909
 Transform:
   m_ObjectHideFlags: 0
@@ -3821,7 +3819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7921818883875442077, guid: e53f22e30fdef674f9d4cebc1bacf292, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
