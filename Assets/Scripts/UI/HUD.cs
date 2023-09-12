@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { Exp, Level, Kill, Time, Health }
+    public enum InfoType { Exp, Level, Kill, Time, Health, Shield }
     public InfoType type;
 
     TextMeshProUGUI myText;
@@ -44,6 +44,12 @@ public class HUD : MonoBehaviour
                 float maxHealth = GameManager.Instance.playerMaxHealth;
                 mySlider.value = curHealth / maxHealth;
                 break;
+            case InfoType.Shield:
+                float curShield = GameManager.Instance.playerShield;
+                float maxShield = GameManager.Instance.playerMaxShield;
+                mySlider.value = curShield / maxShield;
+                break;
+
         }
     }
 }

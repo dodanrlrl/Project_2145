@@ -25,7 +25,7 @@ public class TopDownCharacter : MonoBehaviour
     {
         if (_arms.Count <= 0)
         {
-            Debug.Log("¹«ÀåÀÌ ¾ø½À´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return;
         }
         _currentArmIndex++;
@@ -36,7 +36,7 @@ public class TopDownCharacter : MonoBehaviour
     {
         if (_arms.Count <= 0)
         {
-            Debug.Log("¹«ÀåÀÌ ¾ø½À´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return null;
         }
         return _arms[_currentArmIndex];

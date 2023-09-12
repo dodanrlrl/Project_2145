@@ -8,6 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<<< HEAD:Assets/Resources/Prefabs/Projectiles/BaseBullet.prefab
   - component: {fileID: 3523921017994522938}
   - component: {fileID: 7870870781323548730}
   - component: {fileID: 3800705707367255657}
@@ -15,6 +16,16 @@ GameObject:
   m_Layer: 0
   m_Name: BaseBullet
   m_TagString: Bullet
+========
+  - component: {fileID: 9181591865968505259}
+  - component: {fileID: 3798934619368901986}
+  - component: {fileID: 6479414122658111396}
+  - component: {fileID: -1025638608072575951}
+  - component: {fileID: -8127158730004066157}
+  m_Layer: 0
+  m_Name: LaserBlue
+  m_TagString: Projectile
+>>>>>>>> main:Assets/Resources/Prefabs/LaserBlue.prefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,4 +139,55 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+<<<<<<<< HEAD:Assets/Resources/Prefabs/Projectiles/BaseBullet.prefab
   m_Constraints: 0
+========
+  m_Constraints: 4
+--- !u!58 &-1025638608072575951
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488569347644785719}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.185
+--- !u!114 &-8127158730004066157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488569347644785719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c4b4cad50c65e40aa274cf7def39ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>>> main:Assets/Resources/Prefabs/LaserBlue.prefab

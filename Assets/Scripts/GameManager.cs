@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
             {
                 _i = FindObjectOfType<GameManager>();
                 if (_i == null)
-                    Debug.Log("°ÔÀÓ ¸Å´ÏÀú°¡ ¾ø½À´Ï´Ù.");
+                    Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             }
             return _i;
         }
@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     public int playerHealth;
     public int playerMaxHealth = 100;
     public int playerLife = 3;
+    public int playerShield = 0;
+    public int playerMaxShield = 200;
+
 
     void Awake()
     {
@@ -53,31 +56,31 @@ public class GameManager : MonoBehaviour
     }
 
     void Update()
-    {     
+    {
         // Test Code
         playerKill++;
         playerHealth--;
         GetExp();
-        GameLogic();
-
+        
     }
     void GameLogic()
     {        
-        if (IsPlaying)
-        {
-            gameTime += Time.deltaTime;
-            if (playerHealth == 0)
-            {
-                playerLife--;
-                if (playerLife <= 0)
-                {
-                    IsPlaying = false;
-                    Time.timeScale = 0;
-                    // GameEnd() °á°úÃ¢ ¶ç¿ì±â
-                }
-                playerHealth = playerMaxHealth;
-            }
-        }
+        //while (IsPlaying)
+        //{
+        //    gameTime += Time.deltaTime;
+        //    if (playerHealth == 0)
+        //    {
+        //        playerLife--;
+        //        if (playerLife <= 0)
+        //        {
+        //            IsPlaying = false;
+        //            Time.timeScale = 0;
+        //            break;
+        //            // GameEnd() ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½
+        //        }
+        //        playerHealth = playerMaxHealth;
+        //    }
+        //}
     }
     public void GetExp()
     {
