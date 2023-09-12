@@ -1,36 +1,35 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TopDownMovement : MonoBehaviour
 {
-    private TopDownCharacterController _controller;
-    private Rigidbody2D _rigidbody2D;
-    private SpriteRenderer _spriteRenderer;
-    private Animator _animator;
-    private TopDownCharacter _character;
-    private Vector2 _movementDirection = Vector2.zero;
+    protected TopDownCharacterController Controller;
+    protected Rigidbody2D Rigidbody2D;
+    protected SpriteRenderer SpriteRenderer;
+    protected Animator Animator;
+    protected TopDownCharacter Character;
+    protected Vector2 MovementDirection = Vector2.zero;
 
-    private void Awake()
+
+    protected virtual void Start()
     {
-        _controller = GetComponent<TopDownCharacterController>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _animator = GetComponentInChildren<Animator>();
-        _character = GetComponent<TopDownCharacter>();
+        Controller = GetComponent<TopDownCharacterController>();
+        Rigidbody2D = GetComponent<Rigidbody2D>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+        Animator = GetComponentInChildren<Animator>();
+        Character = GetComponent<TopDownCharacter>();
+        Controller.OnMoveEvent += Move;
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        ApplyMovement(_movementDirection);
-    }
-    private void Start()
-    {
-        _controller.OnMoveEvent += Move;
+        ApplyMovement(MovementDirection);
     }
     private void Move(Vector2 direction)
     {
-        _movementDirection = direction;
+        MovementDirection = direction;
     }
     private void ApplyMovement(Vector2 direction)
     {
-        _rigidbody2D.velocity = _character.Speed * direction;
+        Rigidbody2D.velocity = Character.Speed * direction;
     }
 }

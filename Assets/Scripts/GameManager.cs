@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public bool IsPlaying = false;
 
+    public GameObject PlayerUI;
+
 
     [Header("# Game Control")]
     public float gameTime;
@@ -39,7 +41,6 @@ public class GameManager : MonoBehaviour
     public int playerItem = 5;
 
 
-    
 
     void Awake()
     {

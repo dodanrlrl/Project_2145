@@ -26,7 +26,7 @@ public class TopDownCharacter : MonoBehaviour
     {
         if (_arms.Count <= 0)
         {
-            Debug.Log("������ �����ϴ�.");
+            Debug.Log("무장이 없습니다.");
             return;
         }
         _currentArmIndex++;
@@ -37,7 +37,7 @@ public class TopDownCharacter : MonoBehaviour
     {
         if (_arms.Count <= 0)
         {
-            Debug.Log("������ �����ϴ�.");
+            Debug.Log("무장이 없습니다.");
             return null;
         }
         return _arms[_currentArmIndex];
