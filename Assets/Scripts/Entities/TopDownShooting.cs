@@ -24,7 +24,7 @@ public class TopDownShooting : MonoBehaviour
         {
             Bullet bullet = ObjectPool.Instance.GetObject();
             bullet.transform.position = Spawner.transform.position;
-            bullet.SetBulletInfo(arm.AttackPower, arm.ProjectileLaunchSpeed, arm.ProjectileType);
+            bullet.SetBulletInfo(_character.tag, arm.AttackPower, arm.ProjectileLaunchSpeed, arm.ProjectileType);
             bullet.SetSpriteAndScale();
             bullet.Move(transform.up);
         }
