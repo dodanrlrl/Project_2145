@@ -10,6 +10,7 @@ public class TopDownCharacter : MonoBehaviour
     private List<Arm> _arms = new List<Arm>();
     private int _currentArmIndex;
     public bool isPowerUp;
+    protected bool m_die = false;//유닛 사망여부확인
 
     private void Start()
     {
@@ -56,5 +57,24 @@ public class TopDownCharacter : MonoBehaviour
         isPowerUp = false;
         foreach (Arm arm in _arms)
             arm.ProjectileType--;
+    }
+
+    public void TakeDamage(int damage)//플레이어, enemy 구분하려면 virtual
+    {
+        if (m_die) return;
+
+        CurrentHP = Mathf.Clamp(CurrentHP - damage, 0, MaxHP);
+
+        if(CurrentHP == 0)
+        {
+            m_die = true;
+            //+유닛 죽는 애니메이션 ,사운드
+            //Destroy(this.gameObject, 1);
+        }
+        else
+        {
+            //데미지 입는 애니메이션, 사운드
+        }
+
     }
 }
