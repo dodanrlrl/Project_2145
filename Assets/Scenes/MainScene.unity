@@ -1098,6 +1098,7 @@ RectTransform:
   - {fileID: 1198005677}
   - {fileID: 1786203267}
   - {fileID: 84060899}
+  - {fileID: 405031545}
   m_Father: {fileID: 1006676547}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1219,9 +1220,9 @@ RectTransform:
   m_Father: {fileID: 1474917529}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 92, y: -30}
   m_SizeDelta: {x: 56, y: 44}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &371783107
@@ -1930,7 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a3953fe0811d343b319ba933d687c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseBullet: {fileID: 2617239636057492813, guid: d272b2fb08d2d1a49a07fded3ced4ade, type: 3}
+  BaseBullet: {fileID: 6207180751910220939, guid: d272b2fb08d2d1a49a07fded3ced4ade, type: 3}
 --- !u!4 &899855176
 Transform:
   m_ObjectHideFlags: 0
@@ -2242,9 +2243,9 @@ RectTransform:
   m_Father: {fileID: 1474917529}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 16, y: -30}
   m_SizeDelta: {x: 56, y: 44}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1031773380
@@ -2567,9 +2568,9 @@ RectTransform:
   m_Father: {fileID: 1474917529}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 168, y: -30}
   m_SizeDelta: {x: 56, y: 44}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1184060376
@@ -2991,7 +2992,6 @@ GameObject:
   - component: {fileID: 1340087911}
   - component: {fileID: 1340087914}
   - component: {fileID: 1340087915}
-  - component: {fileID: 1340087916}
   m_Layer: 5
   m_Name: BombPanel
   m_TagString: Untagged
@@ -3488,7 +3488,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479385559}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

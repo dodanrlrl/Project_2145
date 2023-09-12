@@ -30,9 +30,9 @@ public class Panel : MonoBehaviour
 
     private void LateUpdate()
     {
-        int lifes = GameManager.I.playerLife;
-        int bombs = GameManager.I.playerBomb;
-        int items = GameManager.I.playerItem;
+        int lifes = GameManager.Instance.playerLife;
+        int bombs = GameManager.Instance.playerBomb;
+        int items = GameManager.Instance.playerItem;
 
         switch (type)
         {

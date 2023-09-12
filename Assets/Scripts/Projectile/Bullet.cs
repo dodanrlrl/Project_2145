@@ -56,6 +56,7 @@ public class Bullet : MonoBehaviour
     private void DestroyBullet()
     {
         ObjectPool.Instance.ReturnObj(this);
+        Destroy(GetComponent<Collider2D>());
     }
     public void Move(Vector2 Direction)
     {
@@ -77,7 +78,8 @@ public class Bullet : MonoBehaviour
             ; //TOdo
         else if (other.transform.tag == "Boundary")
         {
-            DestroyBullet(); 
+            DestroyBullet();
+
         }
     }
 }
