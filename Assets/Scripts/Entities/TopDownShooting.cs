@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +6,7 @@ public class TopDownShooting : MonoBehaviour
 {
     private TopDownCharacterController _controller;
     private TopDownCharacter _character;
+    public GameObject Spawner;
 
     private void Awake()
     {
@@ -19,15 +19,18 @@ public class TopDownShooting : MonoBehaviour
     }
     public void Shoot()
     {
-        Arm arm = _character.GetCurrentArm();
-        foreach (GameObject Spawner in arm.Spawners)
+        //GameObject projectile = Instantiate(_character.CurrentProjectile);
+        //projectile.transform.position = Spawner.transform.position;
+        //projectile.transform.rotation = transform.rotation;
+        //projectile.GetComponent<Rigidbody2D>().velocity = transform.up * 5;
+
+        ProjectileBase projectile = ObjectPool.GetObject();//오브젝트 풀 안에있는 총알 가져옴
+        projectile.transform.position = Spawner.transform.position;
+        projectile.transform.rotation = transform.rotation;
+
+        if (projectile.gameObject.activeSelf)//충돌해서 이미 반환이 된게 아니라면
         {
-            Bullet bullet = ObjectPool.Instance.GetObject();
-            bullet.transform.position = Spawner.transform.position;
-            bullet.SetBulletInfo(arm.AttackPower, arm.ProjectileLaunchSpeed, arm.ProjectileType);
-            bullet.SetSpriteAndScale();
-            bullet.Move(transform.up);
+            projectile.DestroyProjectileInvoke();//가져온 총알을 다시 반환
         }
     }
-
 }

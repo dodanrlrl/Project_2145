@@ -8,10 +8,13 @@ public class TopDownAimRotation : MonoBehaviour
     private TopDownCharacterController _controller;
     
 
-    private void Start()
+    private void Awake()
     {
         _characterRenderer = GetComponent<SpriteRenderer>();
         _controller = GetComponent<TopDownCharacterController>();
+    }
+    private void Start()
+    {
         _controller.OnLookEvent += OnAim;
     }
     public void OnAim(Vector2 direction)

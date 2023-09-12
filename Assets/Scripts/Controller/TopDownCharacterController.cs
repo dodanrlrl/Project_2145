@@ -18,11 +18,11 @@ public class TopDownCharacterController : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (_timeSinceLastAttack < Character.GetCurrentArm().AttackDelay)
+        if (_timeSinceLastAttack < Character.AttackDelay)
         {
             _timeSinceLastAttack += Time.deltaTime;
         }
-        else if (IsShooting && _timeSinceLastAttack >= Character.GetCurrentArm().AttackDelay)
+        else if (IsShooting && _timeSinceLastAttack >= Character.AttackDelay)
         {
             CallShootEvent();
             _timeSinceLastAttack = 0;
