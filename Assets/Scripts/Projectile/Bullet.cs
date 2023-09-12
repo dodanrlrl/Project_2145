@@ -75,7 +75,11 @@ public class Bullet : MonoBehaviour
         if (other.transform.tag == "Player")
             ; //Todo
         else if (other.transform.tag == "Enemy")
-            ; //TOdo
+        {
+            other.gameObject.GetComponent<TopDownCharacter>().TakeDamage(Damage);
+            DestroyBullet();
+
+        }
         else if (other.transform.tag == "Boundary")
         {
             DestroyBullet();
