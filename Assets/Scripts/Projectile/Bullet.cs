@@ -7,14 +7,16 @@ using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
 {
+    public string LaunchCharacterTag;
     public float Speed;
     public int Damage;
     private ProjectileType _projectileType;
     public Rigidbody2D Rigidbody;
     public SpriteRenderer SpriteRenderer;
 
-    public void SetBulletInfo(float attackPower, float projectileSpeed, ProjectileType projectileType)
+    public void SetBulletInfo(string launchCharacterTag, float attackPower, float projectileSpeed, ProjectileType projectileType)
     {
+        LaunchCharacterTag = launchCharacterTag;
         _projectileType = projectileType;
         Speed = projectileSpeed;
 
@@ -72,18 +74,23 @@ public class Bullet : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.tag == "Player")
-            ; //Todo
-        else if (other.transform.tag == "Enemy")
+        // 발사한 캐릭터의 콜라이더면 무시
+        if (LaunchCharacterTag == other.tag)
+            return;
+
+        if (other.tag == "Player")
         {
             other.gameObject.GetComponent<TopDownCharacter>().TakeDamage(Damage);
             DestroyBullet();
-
         }
-        else if (other.transform.tag == "Boundary")
+        else if (other.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<TopDownCharacter>().TakeDamage(Damage);
+            DestroyBullet();
+        }
+        else if (other.tag == "Boundary")
         {
             DestroyBullet();
-
         }
     }
 }

@@ -6,9 +6,9 @@ public class TopDownPlayerController : TopDownCharacterController
 {
     private Camera _camera;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         _camera = Camera.main;
     }
     public void OnMove(InputValue value)

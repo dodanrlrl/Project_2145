@@ -6,23 +6,24 @@ public class TopDownCharacterController : MonoBehaviour
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnLookEvent;
     public event Action OnShootEvent;
-    protected TopDownCharacter Character;
+    [SerializeField]protected TopDownCharacter Character;
 
     protected bool IsShooting;
     private float _timeSinceLastAttack;
     
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         Character = GetComponent<TopDownCharacter>();
     }
 
     protected virtual void Update()
     {
-        if (_timeSinceLastAttack < Character.GetCurrentArm().AttackDelay)
+        Arm arm = Character.GetCurrentArm();
+        if (_timeSinceLastAttack < arm.AttackDelay)
         {
             _timeSinceLastAttack += Time.deltaTime;
         }
-        else if (IsShooting && _timeSinceLastAttack >= Character.GetCurrentArm().AttackDelay)
+        else if (IsShooting && _timeSinceLastAttack >= arm.AttackDelay)
         {
             CallShootEvent();
             _timeSinceLastAttack = 0;
