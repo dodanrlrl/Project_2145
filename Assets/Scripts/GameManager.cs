@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public int playerLife = 3;
     public int playerShield = 0;
     public int playerMaxShield = 200;
+    public bool isHealthUp = false;
+    public bool isPowerUp = false;
+    public bool isSpeedUp = false;
 
 
     
