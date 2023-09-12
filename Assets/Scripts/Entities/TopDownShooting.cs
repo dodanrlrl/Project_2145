@@ -22,7 +22,7 @@ public class TopDownShooting : MonoBehaviour
         Arm arm = _character.GetCurrentArm();
         foreach (GameObject Spawner in arm.Spawners)
         {
-            Bullet bullet = ObjectPool.Instance.GetObject();//������Ʈ Ǯ �ȿ��ִ� �Ѿ� ������
+            Bullet bullet = ObjectPool.Instance.GetObject();
             bullet.transform.position = Spawner.transform.position;
             bullet.SetBulletInfo(arm.AttackPower, arm.ProjectileLaunchSpeed, arm.ProjectileType);
             bullet.SetSpriteAndScale();
