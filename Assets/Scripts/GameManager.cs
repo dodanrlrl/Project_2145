@@ -5,7 +5,20 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager I;
+    private static GameManager _i;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_i == null)
+            {
+                _i = FindObjectOfType<GameManager>();
+                if (_i == null)
+                    Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+            }
+            return _i;
+        }
+    }
     public GameObject player;
     public bool IsPlaying = false;
 
@@ -30,7 +43,11 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        I = this;
+        if (_i == null)
+            _i = this;
+        else if (_i != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
 
@@ -40,7 +57,6 @@ public class GameManager : MonoBehaviour
         gameTime = 0;
         Time.timeScale = 1;
         IsPlaying = true;
-        //GameLogic();
     }
 
     void Update()
@@ -64,7 +80,7 @@ public class GameManager : MonoBehaviour
         //            IsPlaying = false;
         //            Time.timeScale = 0;
         //            break;
-        //            // GameEnd() °á°úÃ¢ ¶ç¿ì±â
+        //            // GameEnd() ê²°ê³¼ì°½ ë„ìš°ê¸°
         //        }
         //        playerHealth = playerMaxHealth;
         //    }
