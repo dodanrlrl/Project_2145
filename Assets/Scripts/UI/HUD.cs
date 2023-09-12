@@ -26,27 +26,27 @@ public class HUD : MonoBehaviour
             // FloorToInt 소수점 버리기 
 
             case InfoType.Exp:
-                myText.text = string.Format("EXP : {0:F2} %", GameManager.I.playerExp);                
+                myText.text = string.Format("EXP : {0:F2} %", GameManager.Instance.playerExp);                
                 break;
             case InfoType.Level:
-                myText.text = string.Format("Lv.{0:F0}", GameManager.I.playerLevel);
+                myText.text = string.Format("Lv.{0:F0}", GameManager.Instance.playerLevel);
                 break;
             case InfoType.Kill:
-                myText.text = string.Format("{0:F0}", GameManager.I.playerKill);
+                myText.text = string.Format("{0:F0}", GameManager.Instance.playerKill);
                 break;
             case InfoType.Time:
-                int min = Mathf.FloorToInt(GameManager.I.gameTime / 60);
-                int sec = Mathf.FloorToInt(GameManager.I.gameTime % 60);
+                int min = Mathf.FloorToInt(GameManager.Instance.gameTime / 60);
+                int sec = Mathf.FloorToInt(GameManager.Instance.gameTime % 60);
                 myText.text = string.Format("{0:D2}:{1:D2}", min, sec);
                 break;
             case InfoType.Health:
-                float curHealth = GameManager.I.playerHealth;
-                float maxHealth = GameManager.I.playerMaxHealth;
+                float curHealth = GameManager.Instance.playerHealth;
+                float maxHealth = GameManager.Instance.playerMaxHealth;
                 mySlider.value = curHealth / maxHealth;
                 break;
             case InfoType.Shield:
-                float curShield = GameManager.I.playerShield;
-                float maxShield = GameManager.I.playerMaxShield;
+                float curShield = GameManager.Instance.playerShield;
+                float maxShield = GameManager.Instance.playerMaxShield;
                 mySlider.value = curShield / maxShield;
                 break;
 

@@ -1,4 +1,10 @@
-﻿public class Enums
+﻿
+public enum ProjectileType
 {
-    
+    LaserGunBullet,
+    PowerUpLaserGunBullet,
+    GunBullet,
+    PowerUpGunBullet,
+    CannonBullet,
+    PowerUpCannonBullet,
 }

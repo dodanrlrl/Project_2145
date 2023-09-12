@@ -32,6 +32,5 @@ public class TopDownMovement : MonoBehaviour
     private void ApplyMovement(Vector2 direction)
     {
         _rigidbody2D.velocity = _character.Speed * direction;
-        _animator.SetFloat("Velocity", _character.Speed);
     }
 }

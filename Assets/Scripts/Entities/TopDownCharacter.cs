@@ -3,43 +3,78 @@ using UnityEngine;
 
 public class TopDownCharacter : MonoBehaviour
 {
-    //public string Name { get; private set; }
-    //public int CurrentHP { get; private set; }
-    //public int MaxHP { get; private set; }
-    //public float AttackDelay { get; private set; }
-    //public float Speed { get; private set; }
-    //public List<GameObject> Projectiles = new List<GameObject>();
-    //public GameObject CurrentProjectile { get; private set; }
+    public int CurrentHP = 100;
+    public int MaxHP = 100;
+    public float Speed = 5;
+    [SerializeField]
+    private List<Arm> _arms = new List<Arm>();
+    private int _currentArmIndex;
+    public bool isPowerUp;
+    protected bool m_die = false;//유닛 사망여부확인
 
-    public string Name;
-    public int CurrentHP;
-    public int MaxHP;
-    public float AttackDelay;
-    public float Speed;
-    public List<GameObject> Projectiles = new List<GameObject>();
-    public GameObject CurrentProjectile;
-
-    public void SetCharacterInfo(string name, int maxHp, float attackDelay)
+    private void Start()
     {
-        Name = name;
-        MaxHP = maxHp;
-        AttackDelay = attackDelay;
-        CurrentHP = MaxHP;
+        _arms.AddRange(GetComponentsInChildren<Arm>());
     }
-    public void ChangeCurrentProjectile()
+    public void SetCharacterInfo(int maxHp, float speed)
     {
-        if (Projectiles == null || Projectiles.Count == 0)
-            return;
-
-        int nextIndex = Projectiles.IndexOf(CurrentProjectile) + 1;
-        if (nextIndex >= Projectiles.Count)
+        MaxHP = maxHp;
+        CurrentHP = MaxHP;
+        Speed = speed;
+    }
+    public void ChangeArm()
+    {
+        if (_arms.Count <= 0)
         {
-            nextIndex = 0;
+            Debug.Log("������ �����ϴ�.");
+            return;
         }
-        CurrentProjectile = Projectiles[nextIndex];
+        _currentArmIndex++;
+        if (_currentArmIndex >= _arms.Count)
+            _currentArmIndex = 0;
+    }
+    public Arm GetCurrentArm()
+    {
+        if (_arms.Count <= 0)
+        {
+            Debug.Log("������ �����ϴ�.");
+            return null;
+        }
+        return _arms[_currentArmIndex];
+    }
+    public void PowerUp()
+    {
+        if (isPowerUp)
+            return;
+        isPowerUp = true;
+        foreach (Arm arm in _arms)
+            arm.ProjectileType++;
+    }
+    public void PowerUpEnd()
+    {
+        if (!isPowerUp)
+            return;
+        isPowerUp = false;
+        foreach (Arm arm in _arms)
+            arm.ProjectileType--;
+    }
 
-        ObjectPool objectpool = ObjectPool.Instance;//GameObject.Find("ObjectPool").GetComponent<ObjectPool>();
-        objectpool.InitializePoolObject();//�Ѿ� �ʱ�ȭ
-        objectpool.Init(3);//�ʱ�ȭ �� �Ѿ� ������Ʈ Ǯ�� ����
+    public void TakeDamage(int damage)//플레이어, enemy 구분하려면 virtual
+    {
+        if (m_die) return;
+
+        CurrentHP = Mathf.Clamp(CurrentHP - damage, 0, MaxHP);
+
+        if(CurrentHP == 0)
+        {
+            m_die = true;
+            //+유닛 죽는 애니메이션 ,사운드
+            //Destroy(this.gameObject, 1);
+        }
+        else
+        {
+            //데미지 입는 애니메이션, 사운드
+        }
+
     }
 }
