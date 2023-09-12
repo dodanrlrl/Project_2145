@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public int playerLife = 3;
     public int playerShield = 0;
     public int playerMaxShield = 200;
+    public int playerBomb = 3;
+    public int playerItem = 5;
 
 
     
