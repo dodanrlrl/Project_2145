@@ -707,11 +707,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28334470fba46c14eb628175e8a9abb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHP: 300
-  MaxHP: 300
+  CurrentHP: 500
+  MaxHP: 500
   Speed: 4
   _arms: []
   isPowerUp: 1
+  m_die: 0
   item:
   - {fileID: 4801800128693585036, guid: dbac63f954829f64cad12893d1098062, type: 3}
   - {fileID: 3211597261898237585, guid: 826a2c1c5deca864cb44ccde80897aad, type: 3}

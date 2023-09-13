@@ -187,9 +187,9 @@ public class GameManager : MonoBehaviour
         boss.transform.position = new Vector2(0, 6f);
         TopDownEnemyController controller = boss.GetComponent<TopDownEnemyController>();
         controller.AddMovePattern(MovePatternFactory.MoveStraight(controller, 3, MovePatternDirection.Down));
-        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 2, 90, MovePatternDirection.Down, MovePatternRotation.CounterClockwise));
-        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 2, 180, MovePatternDirection.Right, MovePatternRotation.Clockwise));
-        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 2, 90, MovePatternDirection.Left, MovePatternRotation.CounterClockwise));
+        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 4, 90, MovePatternDirection.Down, MovePatternRotation.CounterClockwise));
+        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 4, 180, MovePatternDirection.Right, MovePatternRotation.Clockwise));
+        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 4, 90, MovePatternDirection.Left, MovePatternRotation.CounterClockwise));
         controller.AddMovePattern(MovePatternFactory.RepeatMove(controller, 5, 10, MovePatternDirection.Left));
         Enemies.Add(boss);
     }

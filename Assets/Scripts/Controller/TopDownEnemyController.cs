@@ -60,7 +60,7 @@ public class TopDownEnemyController : TopDownCharacterController
     }
     protected virtual IEnumerator OnShoot()
     {
-        // 차후에 혹시 샷을 멈춰야 하는 기획이 생기면 작성
+        // 화면 범위 벗어나면 총 안쏨.
         Camera _camera = Camera.main;
         float camHeightSize = _camera.orthographicSize * 2;
         float meterPerPixel = camHeightSize / Screen.height;

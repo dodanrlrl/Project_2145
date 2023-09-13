@@ -84,13 +84,6 @@ public class MovePatternFactory : MonoBehaviour
             controller.CallMoveEvent(direction);
             yield return null;
         }
-
-        // 패턴이 끝났다면 마지막 방향으로 계속 이동.
-        while (true)
-        {
-            controller.CallMoveEvent(direction);
-            yield return null;
-        }
     }
 
     public static IEnumerator RepeatMove(TopDownCharacterController controller, float moveDistance, float duration, MovePatternDirection moveDirection)

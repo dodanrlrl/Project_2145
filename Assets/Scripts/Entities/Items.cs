@@ -17,18 +17,18 @@ public class Items : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player"))
             return;
 
-        if (ItemManager.Instance.isUseHU == true && this.gameObject.CompareTag("HealthUp"))
+        if (ItemManager.Instance.isUseHU == true && gameObject.CompareTag("HealthUp"))
             return;
 
-        if (ItemManager.Instance.isUsePU == true && this.gameObject.CompareTag("PowerUp"))
+        if (ItemManager.Instance.isUsePU == true && gameObject.CompareTag("PowerUp"))
             return;
 
-        if (ItemManager.Instance.isUseSU == true && this.gameObject.CompareTag("SpeedUp"))
+        if (ItemManager.Instance.isUseSU == true && gameObject.CompareTag("SpeedUp"))
             return;
 
         Debug.Log(collision.gameObject.name + "¡¢√À");
 
-        ItemManager.Instance.UseItem(this.gameObject);
+        ItemManager.Instance.UseItem(gameObject);
     }
 
     public IEnumerator VanishItem()
