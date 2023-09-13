@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Projectile
+  - Boundary
+  - Bullet
+  - HealthUp
+  - PowerUp
+  - SpeedUp
   layers:
   - Default
   - TransparentFX
