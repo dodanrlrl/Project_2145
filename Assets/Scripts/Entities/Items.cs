@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
-    void Update()
+    public float Duration = 5f;
+    private SpriteRenderer _spriteRenderer;
+    private void Start()
     {
-        this.transform.position -= new Vector3(0, 2f, 0) * Time.deltaTime;
-        if (this.transform.position.y < -10)
-            Destroy(this.gameObject);
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine(VanishItem());
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -28,5 +29,22 @@ public class Items : MonoBehaviour
         Debug.Log(collision.gameObject.name + "Á¢ÃË");
 
         ItemManager.Instance.UseItem(this.gameObject);
+    }
+
+    public IEnumerator VanishItem()
+    {
+        while (Duration > 0f)
+        {
+            if (Duration < 3f)
+            {
+                Color color = _spriteRenderer.color;
+                color = new Color(color.r, color.g, color.b, Duration / 3f);
+                _spriteRenderer.color = color;
+            }
+
+            Duration -= Time.deltaTime;
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }

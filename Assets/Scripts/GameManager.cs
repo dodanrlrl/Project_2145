@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
             {
                 _i = FindObjectOfType<GameManager>();
                 if (_i == null)
-                    Debug.Log("���� �Ŵ����� �����ϴ�.");
+                    Debug.Log("게임 매니저가 없습니다..");
             }
             return _i;
         }
