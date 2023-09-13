@@ -40,10 +40,12 @@ public class ItemManager : MonoBehaviour
                 HealthUp.color = color;
                 GameManager.Instance.player.GetComponent<TopDownCharacter>().MaxHP += 50;
                 GameManager.Instance.player.GetComponent<TopDownCharacter>().CurrentHP += 50;
+                GameManager.Instance.player.GetComponent<TopDownCharacter>().SetHpBar();
                 yield return new WaitForSecondsRealtime(10);
                 GameManager.Instance.player.GetComponent<TopDownCharacter>().MaxHP -= 50;
                 if (GameManager.Instance.player.GetComponent<TopDownCharacter>().CurrentHP > GameManager.Instance.player.GetComponent<TopDownCharacter>().MaxHP)
                     GameManager.Instance.player.GetComponent<TopDownCharacter>().CurrentHP = GameManager.Instance.player.GetComponent<TopDownCharacter>().MaxHP;
+                GameManager.Instance.player.GetComponent<TopDownCharacter>().SetHpBar();
                 Debug.Log("버프해제");
                 isUseHU = false;
                 color.a = 0.2f;

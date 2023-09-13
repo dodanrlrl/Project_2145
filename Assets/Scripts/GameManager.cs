@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject PlayerUI;
 
+    public List<GameObject> EnemyPrefabs;
+    public List<GameObject> Enemies = new List<GameObject>();
 
     [Header("# Game Control")]
     public float gameTime;
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
         gameTime = 0;
         Time.timeScale = 1;
         IsPlaying = true;
+        StartCoroutine(StartStage());
     }
 
     void Update()
@@ -105,9 +109,39 @@ public class GameManager : MonoBehaviour
     {
         // 화면 중앙 애니메이션
         bombEffect.SetActive(true);
+        
     }
     public IEnumerator StartStage()
     {
-        yield return null;
+        yield return StartCoroutine(RightToUpWave(5, 0.8f));
+        yield return StartCoroutine(LeftToUpWave(5, 0.8f));
+    }
+    public IEnumerator RightToUpWave(int enemyCount, float spawnDelay)
+    {
+        GameObject enemyPrefab = EnemyPrefabs[0];
+        int count = 0;
+        while (count < enemyCount)
+        {
+            count++;
+            GameObject enemy = Instantiate(enemyPrefab);
+            enemy.transform.position = new Vector2(10, -2);
+            TopDownEnemyController controller = enemy.GetComponent<TopDownEnemyController>();
+            controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 6, 120, MovePatternDirection.UpperRight, MovePatternRotation.Clockwise));
+            yield return new WaitForSeconds(spawnDelay);
+        }
+    }
+    public IEnumerator LeftToUpWave(int enemyCount, float spawnDelay)
+    {
+        GameObject enemyPrefab = EnemyPrefabs[0];
+        int count = 0;
+        while (count < enemyCount)
+        {
+            count++;
+            GameObject enemy = Instantiate(enemyPrefab);
+            enemy.transform.position = new Vector2(-10, -2);
+            TopDownEnemyController controller = enemy.GetComponent<TopDownEnemyController>();
+            controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 6, 120, MovePatternDirection.UpperLeft, MovePatternRotation.CounterClockwise));
+            yield return new WaitForSeconds(spawnDelay);
+        }
     }
 }

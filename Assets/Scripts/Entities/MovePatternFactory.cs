@@ -82,7 +82,6 @@ public class MovePatternFactory : MonoBehaviour
             direction = direction.normalized;
 
             controller.CallMoveEvent(direction);
-            Debug.Log(angle);
             yield return null;
         }
 
