@@ -26,7 +26,6 @@ public class Bomb : MonoBehaviour
     }
     public void Move(Vector2 Direction)
     {
-        transform.up = Direction;
         myRigid.velocity = Direction * speed;
     }
     public void OnTriggerEnter2D(Collider2D other)
