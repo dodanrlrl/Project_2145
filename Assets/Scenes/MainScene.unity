@@ -3036,7 +3036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a6b458818ce8046921547fb54c17a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   myLifes: []
   myBombs: []
   myItems: []
