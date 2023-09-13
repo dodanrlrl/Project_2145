@@ -11,6 +11,7 @@ public class TopDownCharacter : MonoBehaviour
     private int _currentArmIndex;
     public bool isPowerUp;
     protected bool m_die = false;//유닛 사망여부확인
+    public GameObject[] item;
 
     private void Start()
     {
@@ -67,6 +68,8 @@ public class TopDownCharacter : MonoBehaviour
 
         if(CurrentHP == 0)
         {
+            int itemIndex = Random.Range(0, 3);
+            Instantiate(item[itemIndex]).transform.position = this.transform.position;
             m_die = true;
             //+유닛 죽는 애니메이션 ,사운드
             //Destroy(this.gameObject, 1);
