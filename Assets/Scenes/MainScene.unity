@@ -2686,6 +2686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1479385559}
+  bomb: {fileID: 2966375667069612040, guid: 2dd5566c9a23d934eafc8098651df386, type: 3}
   IsPlaying: 0
   gameTime: 0
   playerExp: 0

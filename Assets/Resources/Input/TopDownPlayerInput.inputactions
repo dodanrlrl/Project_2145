@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Bomb",
+                    "type": "Button",
+                    "id": "6dfdf801-edf4-4b00-8176-310e5b77102a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -108,6 +117,17 @@
                     "processors": "",
                     "groups": "Mouse&Keyboard",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36ffd8d4-882f-4394-95cb-0c499a80b8e4",
+                    "path": "<Keyboard>/b",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bomb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

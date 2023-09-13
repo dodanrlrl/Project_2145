@@ -27,4 +27,11 @@ public class TopDownPlayerController : TopDownCharacterController
         IsShooting = value.isPressed;
 
     }
+
+    public void OnBomb()
+    {
+        if (GameManager.Instance.playerBomb <= 0)
+            return;
+        else GameManager.Instance.CreateBomb();
+    }
 }

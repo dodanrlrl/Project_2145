@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public GameObject player;
+    public GameObject bomb;
     public bool IsPlaying = false;
 
 
@@ -95,4 +96,12 @@ public class GameManager : MonoBehaviour
             playerExp = 0;
         }
     }
+    public void CreateBomb()
+    {
+        playerBomb--;
+        GameObject _bomb = Instantiate(bomb);
+        Bomb newBomb = _bomb.GetComponent<Bomb>();
+        newBomb.Move(transform.up);        
+    }
+
 }
