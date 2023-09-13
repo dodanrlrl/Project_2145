@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
+    void Update()
+    {
+        this.transform.position -= new Vector3(0, 2f, 0) * Time.deltaTime;
+        if (this.transform.position.y < -10)
+            Destroy(this.gameObject);
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Player"))
