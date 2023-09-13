@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
         }
     }
     public GameObject player;
+    public GameObject bomb;
+    public GameObject bombEffect;
+
     public bool IsPlaying = false;
 
     public GameObject PlayerUI;
@@ -95,5 +98,17 @@ public class GameManager : MonoBehaviour
             playerLevel++;
             playerExp = 0;
         }
+    }
+    public void CreateBomb()
+    {
+        playerBomb--;
+        GameObject _bomb = Instantiate(bomb);
+        Bomb newBomb = _bomb.GetComponent<Bomb>();
+        newBomb.Move(transform.up);        
+    }
+    public void Explosion()
+    {
+        // 화면 중앙 애니메이션
+        bombEffect.SetActive(true);
     }
 }
