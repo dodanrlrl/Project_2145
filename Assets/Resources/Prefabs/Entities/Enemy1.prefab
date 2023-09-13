@@ -555,6 +555,10 @@ MonoBehaviour:
   Speed: 2
   _arms: []
   isPowerUp: 0
+  item:
+  - {fileID: 4801800128693585036, guid: dbac63f954829f64cad12893d1098062, type: 3}
+  - {fileID: 3211597261898237585, guid: 826a2c1c5deca864cb44ccde80897aad, type: 3}
+  - {fileID: 982033244283615644, guid: f8f35e45d0d86634ebd6c49a2e87302d, type: 3}
 --- !u!114 &1760326858091453385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13ed1cf8d9600c4cb7e4feadcbcbf24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Character: {fileID: 0}
 --- !u!114 &1610951514958220726
 MonoBehaviour:
   m_ObjectHideFlags: 0

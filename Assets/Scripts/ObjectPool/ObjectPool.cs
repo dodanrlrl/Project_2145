@@ -49,7 +49,7 @@ public class ObjectPool : MonoBehaviour
 
     public void MakeObjects(int count)//오브젝트 풀에 총알 장전
     {
-        for(int i = 0; i < count; i++) 
+        for (int i = 0; i < count; i++)
         {
             _poolingObjQueue.Enqueue(CreateObj());
         }
@@ -78,13 +78,13 @@ public class ObjectPool : MonoBehaviour
 
     public Bullet GetObject()//총알을 발사할때 오브젝트 풀안에서 꺼내오고 부족하면 새로 생성
     {
-        if(Instance._poolingObjQueue.Count > 0)
+        if (Instance._poolingObjQueue.Count > 0)
         {
-           Bullet obj = Instance._poolingObjQueue.Dequeue();
-           obj.transform.SetParent(null);
-           obj.gameObject.SetActive(true);
+            Bullet obj = Instance._poolingObjQueue.Dequeue();
+            obj.transform.SetParent(null);
+            obj.gameObject.SetActive(true);
 
-           return obj;
+            return obj;
         }
         else
         {

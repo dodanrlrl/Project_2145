@@ -18,7 +18,7 @@ public class Items : MonoBehaviour
         if (ItemManager.Instance.isUseSU == true && this.gameObject.CompareTag("SpeedUp"))
             return;
 
-        Debug.Log(collision.gameObject.name + "¡¢√À«—ªÛ¥Î");
+        Debug.Log(collision.gameObject.name + "¡¢√À");
 
         ItemManager.Instance.UseItem(this.gameObject);
     }
