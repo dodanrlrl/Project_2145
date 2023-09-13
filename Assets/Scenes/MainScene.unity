@@ -2562,6 +2562,9 @@ MonoBehaviour:
   PlayerUI: {fileID: 911806210}
   EnemyPrefabs:
   - {fileID: 7598893548360576988, guid: 34098026b7e939246b1e8c751725fba0, type: 3}
+  - {fileID: 7154099287373594375, guid: 377362cf62a7fd14ab7703c9803e5e20, type: 3}
+  - {fileID: 2017855237082251229, guid: 0369c5b6c5669ff42addbd4274006455, type: 3}
+  - {fileID: 4413763581109850718, guid: f15f3eae76ca3404db7aa26b2e30d9ca, type: 3}
   Enemies: []
   gameTime: 0
   playerExp: 0

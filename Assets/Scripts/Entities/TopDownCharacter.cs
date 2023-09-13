@@ -74,7 +74,7 @@ public class TopDownCharacter : MonoBehaviour
             Instantiate(item[itemIndex]).transform.position = transform.position;
             m_die = true;
             //+유닛 죽는 애니메이션 ,사운드
-            Destroy(gameObject, 1);
+            Destroy(gameObject);
         }
         else
         {
