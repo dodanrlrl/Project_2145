@@ -66,7 +66,8 @@ public class TopDownCharacter : MonoBehaviour
         if (m_die) return;
 
         CurrentHP = Mathf.Clamp(CurrentHP - damage, 0, MaxHP);
-        SetHpBar();
+        if (tag == "Player")
+            SetHpBar();
         if (CurrentHP == 0)
         {
             int itemIndex = Random.Range(0, 3);
