@@ -136,4 +136,44 @@ public class MovePatternFactory : MonoBehaviour
             yield return null;
         }
     }
+    public static IEnumerator MoveStraight(TopDownCharacterController controller, float moveDistance, MovePatternDirection moveDirection)
+    {
+        TopDownCharacter character = controller.Character;
+        Vector2 startPosition = character.transform.position;
+        Vector2 direction = Vector2.zero;
+
+        switch (moveDirection)
+        {
+            case MovePatternDirection.UpperLeft:
+                direction = new Vector2(-1, 1);
+                break;
+            case MovePatternDirection.UpperRight:
+                direction = new Vector2(1, 1);
+                break;
+            case MovePatternDirection.LowerLeft:
+                direction = new Vector2(-1, -1);
+                break;
+            case MovePatternDirection.LowerRight:
+                direction = new Vector2(1, -1);
+                break;
+            case MovePatternDirection.Up:
+                direction = new Vector2(0, 1);
+                break;
+            case MovePatternDirection.Down:
+                direction = new Vector2(0, -1);
+                break;
+            case MovePatternDirection.Left:
+                direction = new Vector2(-1, 0);
+                break;
+            case MovePatternDirection.Right:
+                direction = new Vector2(1, 0);
+                break;
+        }
+        direction = direction.normalized;
+        while (Vector2.Distance(startPosition, character.transform.position) < moveDistance)
+        {
+            controller.CallMoveEvent(direction);
+            yield return null;
+        }
+    }
 }

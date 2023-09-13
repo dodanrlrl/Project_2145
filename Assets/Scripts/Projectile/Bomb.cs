@@ -7,35 +7,26 @@ public class Bomb : MonoBehaviour
 {
     private int damage;
     private int speed;
+    private bool arrivedExplosionPoint;
 
     Rigidbody2D myRigid;
     private void Awake()
     {
-        damage = 999;
+        damage = 50;
         speed = 10;
+        arrivedExplosionPoint = false;
         myRigid = GetComponent<Rigidbody2D>();     
-    }
-
-    private void Update()
-    {
-        if (transform.position.y >= 0.1f)
-        {
-            GameManager.Instance.Explosion();
-            Destroy(gameObject);
-        }
     }
     public void Move(Vector2 Direction)
     {
         myRigid.velocity = Direction * speed;
     }
-    public void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.transform.tag == "Player" || other.transform.tag == "Boundary")
-            return;
-        else if (other.transform.tag == "Enemy")
+        if (collision.tag == "BombExplosionPoint")
         {
-            other.gameObject.GetComponent<TopDownCharacter>().TakeDamage(damage);
+            GameManager.Instance.Explosion();
+            Destroy(gameObject);
         }
     }
-    
 }

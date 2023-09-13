@@ -10,7 +10,7 @@ public class TopDownCharacter : MonoBehaviour
     private List<Arm> _arms = new List<Arm>();
     private int _currentArmIndex;
     public bool isPowerUp;
-    protected bool m_die = false;//유닛 사망여부확인
+    public bool m_die = false;//유닛 사망여부확인
     public GameObject[] item;
     private HpBar _hpBar;
     private void Start()
@@ -66,7 +66,6 @@ public class TopDownCharacter : MonoBehaviour
         if (m_die) return;
 
         CurrentHP = Mathf.Clamp(CurrentHP - damage, 0, MaxHP);
-        if (tag == "Player")
             SetHpBar();
         if (CurrentHP == 0)
         {
@@ -74,7 +73,7 @@ public class TopDownCharacter : MonoBehaviour
             Instantiate(item[itemIndex]).transform.position = transform.position;
             m_die = true;
             //+유닛 죽는 애니메이션 ,사운드
-            Destroy(gameObject);
+            Destroy(gameObject, 0.3f);
         }
         else
         {

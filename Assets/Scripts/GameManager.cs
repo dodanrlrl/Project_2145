@@ -109,16 +109,29 @@ public class GameManager : MonoBehaviour
     {
         // 화면 중앙 애니메이션
         bombEffect.SetActive(true);
+        for (int i = 0; i < Enemies.Count; i++)
+        {
+            TopDownCharacter enemyCharacter = Enemies[i].GetComponent<TopDownCharacter>();
+            if (enemyCharacter.CurrentHP < 50)
+            {
+                Enemies.RemoveAt(i);
+                i--;
+            }
+            enemyCharacter.TakeDamage(50);
+        }
         
     }
     public IEnumerator StartStage()
     {
-        yield return StartCoroutine(RightToUpWave(5, 0.8f));
-        yield return StartCoroutine(LeftToUpWave(5, 0.8f));
+        yield return StartCoroutine(RightToUpWave(EnemyPrefabs[0], 5, 0.8f));
+        yield return StartCoroutine(LeftToUpWave(EnemyPrefabs[1], 5, 0.8f));
+        yield return StartCoroutine(BothSideCrossWave(EnemyPrefabs[2], 3, 1f));
+        yield return StartCoroutine(BothSideCrossWave(EnemyPrefabs[2], 3, 1f));
+        yield return new WaitForSeconds(12);
+        Boss(EnemyPrefabs[3]);
     }
-    public IEnumerator RightToUpWave(int enemyCount, float spawnDelay)
+    public IEnumerator RightToUpWave(GameObject enemyPrefab, int enemyCount, float spawnDelay)
     {
-        GameObject enemyPrefab = EnemyPrefabs[0];
         int count = 0;
         while (count < enemyCount)
         {
@@ -127,12 +140,12 @@ public class GameManager : MonoBehaviour
             enemy.transform.position = new Vector2(10, -2);
             TopDownEnemyController controller = enemy.GetComponent<TopDownEnemyController>();
             controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 6, 120, MovePatternDirection.UpperRight, MovePatternRotation.Clockwise));
+            Enemies.Add(enemy);
             yield return new WaitForSeconds(spawnDelay);
         }
     }
-    public IEnumerator LeftToUpWave(int enemyCount, float spawnDelay)
+    public IEnumerator LeftToUpWave(GameObject enemyPrefab, int enemyCount, float spawnDelay)
     {
-        GameObject enemyPrefab = EnemyPrefabs[0];
         int count = 0;
         while (count < enemyCount)
         {
@@ -141,7 +154,43 @@ public class GameManager : MonoBehaviour
             enemy.transform.position = new Vector2(-10, -2);
             TopDownEnemyController controller = enemy.GetComponent<TopDownEnemyController>();
             controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 6, 120, MovePatternDirection.UpperLeft, MovePatternRotation.CounterClockwise));
+            Enemies.Add(enemy);
             yield return new WaitForSeconds(spawnDelay);
         }
+    }
+    public IEnumerator BothSideCrossWave(GameObject enemyPrefab, int halfEnemyCount, float spawnDelay)
+    {
+        int count = 0;
+        while (count < halfEnemyCount)
+        {
+            count ++;
+            GameObject enemy = Instantiate(enemyPrefab);
+            enemy.transform.position = new Vector2(-10, 3.5f);
+            TopDownEnemyController controller = enemy.GetComponent<TopDownEnemyController>();
+            controller.AddMovePattern(MovePatternFactory.MoveStraight(controller, 10, MovePatternDirection.Right));
+            controller.AddMovePattern(MovePatternFactory.RepeatMove(controller, 4, 5, MovePatternDirection.Right));
+            controller.AddMovePattern(MovePatternFactory.MoveStraight(controller, 20, MovePatternDirection.Right));
+            Enemies.Add(enemy);
+            enemy = Instantiate(enemyPrefab);
+            enemy.transform.position = new Vector2(10, 3.5f);
+            controller = enemy.GetComponent<TopDownEnemyController>();
+            controller.AddMovePattern(MovePatternFactory.MoveStraight(controller, 10, MovePatternDirection.Left));
+            controller.AddMovePattern(MovePatternFactory.RepeatMove(controller, 4, 5, MovePatternDirection.Left));
+            controller.AddMovePattern(MovePatternFactory.MoveStraight(controller, 20, MovePatternDirection.Left));
+            Enemies.Add(enemy);
+            yield return new WaitForSeconds(spawnDelay);
+        }
+    }
+    public void Boss(GameObject bossPrefab)
+    {
+        GameObject boss = Instantiate(bossPrefab);
+        boss.transform.position = new Vector2(0, 6f);
+        TopDownEnemyController controller = boss.GetComponent<TopDownEnemyController>();
+        controller.AddMovePattern(MovePatternFactory.MoveStraight(controller, 3, MovePatternDirection.Down));
+        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 2, 90, MovePatternDirection.Down, MovePatternRotation.CounterClockwise));
+        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 2, 180, MovePatternDirection.Right, MovePatternRotation.Clockwise));
+        controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 2, 90, MovePatternDirection.Left, MovePatternRotation.CounterClockwise));
+        controller.AddMovePattern(MovePatternFactory.RepeatMove(controller, 5, 10, MovePatternDirection.Left));
+        Enemies.Add(boss);
     }
 }

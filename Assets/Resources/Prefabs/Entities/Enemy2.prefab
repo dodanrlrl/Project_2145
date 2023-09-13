@@ -596,7 +596,10 @@ MonoBehaviour:
   Speed: 2
   _arms: []
   isPowerUp: 0
-  item: []
+  item:
+  - {fileID: 4801800128693585036, guid: dbac63f954829f64cad12893d1098062, type: 3}
+  - {fileID: 3211597261898237585, guid: 826a2c1c5deca864cb44ccde80897aad, type: 3}
+  - {fileID: 982033244283615644, guid: f8f35e45d0d86634ebd6c49a2e87302d, type: 3}
 --- !u!114 &7376522488571019423
 MonoBehaviour:
   m_ObjectHideFlags: 0

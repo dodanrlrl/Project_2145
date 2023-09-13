@@ -229,7 +229,7 @@ Transform:
   - {fileID: 1254101825079985995}
   - {fileID: 1336173729952500442}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5812737231884562749
 SpriteRenderer:
@@ -339,7 +339,10 @@ MonoBehaviour:
   Speed: 5
   _arms: []
   isPowerUp: 0
-  item: []
+  item:
+  - {fileID: 4801800128693585036, guid: dbac63f954829f64cad12893d1098062, type: 3}
+  - {fileID: 3211597261898237585, guid: 826a2c1c5deca864cb44ccde80897aad, type: 3}
+  - {fileID: 982033244283615644, guid: f8f35e45d0d86634ebd6c49a2e87302d, type: 3}
 --- !u!114 &8760751076432292770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +408,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

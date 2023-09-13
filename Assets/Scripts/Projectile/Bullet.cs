@@ -52,7 +52,8 @@ public class Bullet : MonoBehaviour
         }
         SpriteRenderer.sprite = Database.Instance.GetBulletSpriteByProjectileType(_projectileType);
         transform.localScale = Database.Instance.GetBulletLocalScaleByProjectileType(_projectileType);
-        gameObject.AddComponent<PolygonCollider2D>();
+        PolygonCollider2D collider = gameObject.AddComponent<PolygonCollider2D>();
+        collider.isTrigger = true;
 
     }
     private void DestroyBullet()
