@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Database : MonoBehaviour
 {
@@ -30,26 +31,27 @@ public class Database : MonoBehaviour
     }
     public Sprite GetBulletSpriteByProjectileType(ProjectileType type)
     {
+        List<Sprite> spriteSheet = Resources.LoadAll<Sprite>("Images/Lasers/M484BulletCollection1-removevg-preview").ToList();
         Sprite sprite = null;
         switch (type)
         {
             case ProjectileType.LaserGunBullet:
-                sprite = Resources.Load<Sprite>("Images/Lasers/M484BulletCollection1-removevg-preview");
+                sprite = spriteSheet.Find(sprite => sprite.name == "M484BulletCollection1-removebg-preview_74");
                 break;
             case ProjectileType.PowerUpLaserGunBullet:
-                sprite = Resources.Load<Sprite>("Images/Lasers/M484BulletCollection1-removevg-preview");
+                sprite = spriteSheet.Find(sprite => sprite.name == "M484BulletCollection1-removebg-preview_76");
                 break;
             case ProjectileType.GunBullet:
-                sprite = Resources.Load<Sprite>("Images/Lasers/M484BulletCollection1-removevg-preview");
+                sprite = spriteSheet.Find(sprite => sprite.name == "M484BulletCollection1-removebg-preview_214");
                 break;
             case ProjectileType.PowerUpGunBullet:
-                sprite = Resources.Load<Sprite>("Images/Lasers/M484BulletCollection1-removevg-preview");
+                sprite = spriteSheet.Find(sprite => sprite.name == "M484BulletCollection1-removebg-preview_257");
                 break;
             case ProjectileType.CannonBullet:
-                sprite = Resources.Load<Sprite>("Images/Lasers/M484BulletCollection1-removevg-preview");
+                sprite = spriteSheet.Find(sprite => sprite.name == "M484BulletCollection1-removebg-preview_217");
                 break;
             case ProjectileType.PowerUpCannonBullet:
-                sprite = Resources.Load<Sprite>("Images/Lasers/M484BulletCollection1-removevg-preview");
+                sprite = spriteSheet.Find(sprite => sprite.name == "M484BulletCollection1-removebg-preview_260");
                 break;
             default:
                 break;
