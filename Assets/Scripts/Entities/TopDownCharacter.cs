@@ -12,10 +12,11 @@ public class TopDownCharacter : MonoBehaviour
     public bool isPowerUp;
     protected bool m_die = false;//유닛 사망여부확인
     public GameObject[] item;
-
+    private HpBar _hpBar;
     private void Start()
     {
         _arms.AddRange(GetComponentsInChildren<Arm>());
+        _hpBar = GetComponentInChildren<HpBar>();
     }
     public void SetCharacterInfo(int maxHp, float speed)
     {
@@ -65,19 +66,23 @@ public class TopDownCharacter : MonoBehaviour
         if (m_die) return;
 
         CurrentHP = Mathf.Clamp(CurrentHP - damage, 0, MaxHP);
-
-        if(CurrentHP == 0)
+        SetHpBar();
+        if (CurrentHP == 0)
         {
             int itemIndex = Random.Range(0, 3);
-            Instantiate(item[itemIndex]).transform.position = this.transform.position;
+            Instantiate(item[itemIndex]).transform.position = transform.position;
             m_die = true;
             //+유닛 죽는 애니메이션 ,사운드
-            //Destroy(this.gameObject, 1);
+            Destroy(gameObject, 1);
         }
         else
         {
             //데미지 입는 애니메이션, 사운드
         }
 
+    }
+    public void SetHpBar()
+    {
+        _hpBar.SetHp((float)CurrentHP / MaxHP);
     }
 }

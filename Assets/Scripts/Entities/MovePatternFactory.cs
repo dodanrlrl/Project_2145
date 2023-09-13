@@ -11,7 +11,7 @@ using UnityEngine.TextCore.Text;
 
 public class MovePatternFactory : MonoBehaviour
 {
-    public static IEnumerator MoveInCircleXDegree(TopDownCharacterController controller, float radius, float degree, MovePatternStartPosition patternStartPosition, MovePatternRotation patternRotation)
+    public static IEnumerator CircleMoveXDegree(TopDownCharacterController controller, float radius, float degree, MovePatternDirection centerPointDirection, MovePatternRotation rotateDirection)
     {
         TopDownCharacter character = controller.Character;
         Vector2 characterPosition = character.transform.position;
@@ -20,43 +20,43 @@ public class MovePatternFactory : MonoBehaviour
         float diagonalAxisValue = Mathf.Cos(45 * Mathf.Deg2Rad);
         float initialAngle = 0;
         // 중심 원 위치에 따라 초기 각 설정.
-        switch (patternStartPosition)
+        switch (centerPointDirection)
         {
-            case MovePatternStartPosition.UpperLeft:
+            case MovePatternDirection.UpperLeft:
                 centerPoint = new Vector2(characterPosition.x - diagonalAxisValue, characterPosition.y + diagonalAxisValue);
                 initialAngle = -90 + 45;
                 break;
-            case MovePatternStartPosition.UpperRight:
+            case MovePatternDirection.UpperRight:
                 centerPoint = new Vector2(characterPosition.x + diagonalAxisValue, characterPosition.y + diagonalAxisValue);
                 initialAngle = -90 - 45;
                 break;
-            case MovePatternStartPosition.LowerLeft:
+            case MovePatternDirection.LowerLeft:
                 centerPoint = new Vector2(characterPosition.x - diagonalAxisValue, characterPosition.y - diagonalAxisValue);
                 initialAngle = 90 - 45;
                 break;
-            case MovePatternStartPosition.LowerRight:
+            case MovePatternDirection.LowerRight:
                 centerPoint = new Vector2(characterPosition.x - diagonalAxisValue, characterPosition.y - diagonalAxisValue);
                 initialAngle = 90 + 45;
                 break;
-            case MovePatternStartPosition.Up:
+            case MovePatternDirection.Up:
                 centerPoint = new Vector2(characterPosition.x, characterPosition.y + radius);
                 initialAngle = -90;
                 break;
-            case MovePatternStartPosition.Down:
+            case MovePatternDirection.Down:
                 centerPoint = new Vector2(characterPosition.x, characterPosition.y - radius);
                 initialAngle = 90;
                 break;
-            case MovePatternStartPosition.Left:
+            case MovePatternDirection.Left:
                 centerPoint = new Vector2(characterPosition.x - radius, characterPosition.y);
                 initialAngle = 90 - 90;
                 break;
-            case MovePatternStartPosition.Right:
+            case MovePatternDirection.Right:
                 centerPoint = new Vector2(characterPosition.x + radius, characterPosition.y);
                 initialAngle = 90 + 90;
                 break;
         }
         int rotateCoefficient = 0;
-        switch (patternRotation)
+        switch (rotateDirection)
         {
             case MovePatternRotation.Clockwise:
                 rotateCoefficient = -1;
@@ -89,6 +89,50 @@ public class MovePatternFactory : MonoBehaviour
         // 패턴이 끝났다면 마지막 방향으로 계속 이동.
         while (true)
         {
+            controller.CallMoveEvent(direction);
+            yield return null;
+        }
+    }
+
+    public static IEnumerator RepeatMove(TopDownCharacterController controller, float moveDistance, float duration, MovePatternDirection moveDirection)
+    {
+        TopDownCharacter character = controller.Character;
+        Vector2 startPosition = character.transform.position;
+        Vector2 direction = Vector2.zero;
+
+        switch (moveDirection)
+        {
+            case MovePatternDirection.UpperLeft:
+                direction = new Vector2(-1, 1);
+                break;
+            case MovePatternDirection.UpperRight:
+                direction = new Vector2(1, 1);
+                break;
+            case MovePatternDirection.LowerLeft:
+                direction = new Vector2(-1, -1);
+                break;
+            case MovePatternDirection.LowerRight:
+                direction = new Vector2(1, -1);
+                break;
+            case MovePatternDirection.Up:
+                direction = new Vector2(0, 1);
+                break;
+            case MovePatternDirection.Down:
+                direction = new Vector2(0, -1);
+                break;
+            case MovePatternDirection.Left:
+                direction = new Vector2(-1, 0);
+                break;
+            case MovePatternDirection.Right:
+                direction = new Vector2(1, 0);
+                break;
+        }
+        direction = direction.normalized;
+
+        while (duration > 0)
+        {
+            if (Vector2.Distance(startPosition, character.transform.position) > moveDistance)
+                direction = direction * -1;
             controller.CallMoveEvent(direction);
             yield return null;
         }

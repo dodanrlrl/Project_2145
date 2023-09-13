@@ -14,7 +14,7 @@ public class TopDownEnemyController : TopDownCharacterController
     protected override void Start()
     {
         base.Start();
-
+        AddMovePattern(MovePatternFactory.RepeatMove(this, 3, 5, MovePatternDirection.Left));
         StartCoroutine(OnMove());
         StartCoroutine(OnLook());
         StartCoroutine(OnShoot());

@@ -9,7 +9,7 @@ public enum ProjectileType
     PowerUpCannonBullet,
 }
 
-public enum MovePatternStartPosition
+public enum MovePatternDirection
 {
     UpperLeft,
     UpperRight,

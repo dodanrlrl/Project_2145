@@ -35,8 +35,6 @@ public class GameManager : MonoBehaviour
     public float playerExp;
     public int playerLevel;
     public int playerKill; 
-    public int playerHealth;
-    public int playerMaxHealth = 100;
     public int playerLife = 3;
     public int playerShield = 0;
     public int playerMaxShield = 200;
@@ -57,7 +55,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerHealth = playerMaxHealth;
         gameTime = 0;
         Time.timeScale = 1;
         IsPlaying = true;
@@ -66,8 +63,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Test Code
-        playerKill++;
-        playerHealth--;
         GetExp();
         
     }
@@ -110,5 +105,9 @@ public class GameManager : MonoBehaviour
     {
         // 화면 중앙 애니메이션
         bombEffect.SetActive(true);
+    }
+    public IEnumerator StartStage()
+    {
+        yield return null;
     }
 }

@@ -11,11 +11,13 @@ public class HUD : MonoBehaviour
 
     TextMeshProUGUI myText;
     Slider mySlider;
+    private TopDownCharacter _playerCharacter;
 
-    private void Awake()
+    private void Start()
     {
         myText = GetComponent<TextMeshProUGUI>();
         mySlider = GetComponent<Slider>();
+        _playerCharacter = GameManager.Instance.player.GetComponent<TopDownCharacter>();
     }
 
     private void LateUpdate()
@@ -40,9 +42,7 @@ public class HUD : MonoBehaviour
                 myText.text = string.Format("{0:D2}:{1:D2}", min, sec);
                 break;
             case InfoType.Health:
-                float curHealth = GameManager.Instance.playerHealth;
-                float maxHealth = GameManager.Instance.playerMaxHealth;
-                mySlider.value = curHealth / maxHealth;
+                _playerCharacter.SetHpBar();
                 break;
             case InfoType.Shield:
                 float curShield = GameManager.Instance.playerShield;
