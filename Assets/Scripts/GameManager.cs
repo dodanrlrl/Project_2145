@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     }
     public GameObject player;
     public GameObject bomb;
+    public GameObject bombEffect;
+
     public bool IsPlaying = false;
 
 
@@ -103,5 +105,9 @@ public class GameManager : MonoBehaviour
         Bomb newBomb = _bomb.GetComponent<Bomb>();
         newBomb.Move(transform.up);        
     }
-
+    public void Explosion()
+    {
+        // 화면 중앙 애니메이션
+        bombEffect.SetActive(true);
+    }
 }

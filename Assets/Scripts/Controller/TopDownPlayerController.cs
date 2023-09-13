@@ -29,7 +29,7 @@ public class TopDownPlayerController : TopDownCharacterController
     }
 
     public void OnBomb()
-    {
+    {        
         if (GameManager.Instance.playerBomb <= 0)
             return;
         else GameManager.Instance.CreateBomb();

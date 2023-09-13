@@ -8,25 +8,20 @@ public class Bomb : MonoBehaviour
     private int damage;
     private int speed;
 
-    Animation myAnim;
     Rigidbody2D myRigid;
-    Collider2D myColl;
-
     private void Awake()
     {
         damage = 999;
         speed = 10;
-        myAnim = GetComponent<Animation>();
-        myRigid = GetComponent<Rigidbody2D>();
-        myColl = GetComponent<Collider2D>();
+        myRigid = GetComponent<Rigidbody2D>();     
     }
 
     private void Update()
     {
-        if (transform.position.y >= 0f)
+        if (transform.position.y >= 0.1f)
         {
-            Debug.Log("Áß¾Ó µµ´Þ");
-            Explosion();
+            GameManager.Instance.Explosion();
+            Destroy(gameObject);
         }
     }
     public void Move(Vector2 Direction)
@@ -43,9 +38,5 @@ public class Bomb : MonoBehaviour
             other.gameObject.GetComponent<TopDownCharacter>().TakeDamage(damage);
         }
     }
-    public void Explosion()
-    {
-        speed = 0;
-        Destroy(gameObject,0.3f);
-    }
+    
 }
