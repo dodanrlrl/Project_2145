@@ -66,32 +66,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // Test Code
-        GetExp();
-        
-    }
-    void GameLogic()
-    {        
-        //while (IsPlaying)
-        //{
-        //    gameTime += Time.deltaTime;
-        //    if (playerHealth == 0)
-        //    {
-        //        playerLife--;
-        //        if (playerLife <= 0)
-        //        {
-        //            IsPlaying = false;
-        //            Time.timeScale = 0;
-        //            break;
-        //            // GameEnd() 결과창 띄우기
-        //        }
-        //        playerHealth = playerMaxHealth;
-        //    }
-        //}
-    }
-    public void GetExp()
+        gameTime += Time.deltaTime;    
+    }    
+
+    public void GetExp(int value)
     {
-        playerExp++;
+        playerExp += value;
         if (playerExp == 100f)
         {
             playerLevel++;

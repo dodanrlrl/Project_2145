@@ -69,6 +69,7 @@ public class TopDownCharacter : MonoBehaviour
             SetHpBar();
         if (CurrentHP == 0)
         {
+            GameManager.Instance.GetExp(10);
             int itemIndex = Random.Range(0, 3);
             Instantiate(item[itemIndex]).transform.position = transform.position;
             m_die = true;
