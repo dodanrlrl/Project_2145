@@ -12,6 +12,7 @@ TagManager:
   - PowerUp
   - SpeedUp
   - BombExplosionPoint
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class GoMain : MonoBehaviour
 {
     public void Main()
     {
-        Debug.Log("¾Ó");
+        GameManager.Instance.EndGame();
         SceneManager.LoadScene("StartScene");
     }
 }

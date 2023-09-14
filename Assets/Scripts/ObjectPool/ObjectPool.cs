@@ -106,4 +106,9 @@ public class ObjectPool : MonoBehaviour
 
     }
 
+    public void Clear()
+    {
+        foreach (var bullet in _poolingObjQueue)
+            Destroy(bullet);
+    }
 }

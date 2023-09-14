@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     [Header("# Player Info")]
     public float playerExp;
     public int playerLevel;
-    public int playerKill; 
+    public int playerKill= 0;
     public int playerLife = 3;
     public int playerShield = 0;
     public int playerMaxShield = 200;
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     [Header("# Result UI")]
     public TextMeshProUGUI Score;
     public TextMeshProUGUI BestScore;
-    public TextMeshProUGUI Destroy;
+    public TextMeshProUGUI KillCount;
     public Canvas ResultPanel;
 
 
@@ -180,5 +180,22 @@ public class GameManager : MonoBehaviour
         controller.AddMovePattern(MovePatternFactory.CircleMoveXDegree(controller, 4, 90, MovePatternDirection.Left, MovePatternRotation.CounterClockwise));
         controller.AddMovePattern(MovePatternFactory.RepeatMove(controller, 5, 10, MovePatternDirection.Left));
         Enemies.Add(boss);
+    }
+    public void PrintResult()
+    {
+        Time.timeScale = 0f;
+        EndGame();
+        ResultPanel.gameObject.SetActive(true);
+        Score.text = $"{playerKill * 15 + gameTime}";
+        BestScore.text = $"{playerKill * 15 + gameTime}";
+        KillCount.text = playerKill.ToString();
+    }
+    public void EndGame()
+    {
+        foreach (GameObject obj in Enemies)
+        {
+            Destroy(obj);
+        }
+        ObjectPool.Instance.Clear();
     }
 }

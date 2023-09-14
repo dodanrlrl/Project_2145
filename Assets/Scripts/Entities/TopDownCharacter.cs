@@ -72,23 +72,38 @@ public class TopDownCharacter : MonoBehaviour
             SetHpBar();
         if (CurrentHP == 0)
         {
-            if (tag == "Player")
-            {
-                Debug.Log("사망");
-                GameManager.Instance.ResultPanel.gameObject.SetActive(true);
-                GameManager.Instance.Score.text = "100";
-                GameManager.Instance.BestScore.text = "100";
-                GameManager.Instance.Destroy.text = "10";
-            }
-            else
+
+            if (tag == "Enemy" || tag == "Boss")
             {
                 GameManager.Instance.playerKill++;
                 GameManager.Instance.GetExp(10);
                 int itemIndex = Random.Range(0, 3);
                 Instantiate(item[itemIndex]).transform.position = transform.position;
-                m_die = true;
                 //+유닛 죽는 애니메이션 ,사운드
                 Destroy(gameObject, 0.3f);
+                m_die = true;
+                if (tag == "Boss")
+                {
+                    m_die = true;
+
+                    GameManager.Instance.PrintResult();
+                    GameManager.Instance.EndGame();
+                }
+            }
+            else if (tag == "Player")
+            {
+                int life = GameManager.Instance.playerLife;
+                if (GameManager.Instance.playerLife > 0)
+                {
+                    GameManager.Instance.playerLife--;
+                    CurrentHP = MaxHP;
+                    SetHpBar();
+                }
+                else
+                {
+                    m_die = true;
+                    GameManager.Instance.PrintResult();
+                }
             }
         }
         else

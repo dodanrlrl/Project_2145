@@ -84,7 +84,7 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<TopDownCharacter>().TakeDamage(Damage);
             DestroyBullet();
         }
-        else if (other.tag == "Enemy")
+        else if (other.tag == "Enemy" || other.tag == "Boss")
         {
             other.gameObject.GetComponent<TopDownCharacter>().TakeDamage(Damage);
             DestroyBullet();
