@@ -1,7 +1,9 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,6 +45,12 @@ public class GameManager : MonoBehaviour
     public int playerMaxShield = 200;
     public int playerBomb = 3;
     public int playerItem = 5;
+
+    [Header("# Result UI")]
+    public TextMeshProUGUI Score;
+    public TextMeshProUGUI BestScore;
+    public TextMeshProUGUI Destroy;
+    public Canvas ResultPanel;
 
 
 

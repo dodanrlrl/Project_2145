@@ -63,19 +63,33 @@ public class TopDownCharacter : MonoBehaviour
 
     public void TakeDamage(int damage)//플레이어, enemy 구분하려면 virtual
     {
-        if (m_die) return;
+        if (m_die)
+        {
+            return;
+        }
 
         CurrentHP = Mathf.Clamp(CurrentHP - damage, 0, MaxHP);
             SetHpBar();
         if (CurrentHP == 0)
         {
-            GameManager.Instance.playerKill++;
-            GameManager.Instance.GetExp(10);
-            int itemIndex = Random.Range(0, 3);
-            Instantiate(item[itemIndex]).transform.position = transform.position;
-            m_die = true;
-            //+유닛 죽는 애니메이션 ,사운드
-            Destroy(gameObject, 0.3f);
+            if (tag == "Player")
+            {
+                Debug.Log("사망");
+                GameManager.Instance.ResultPanel.gameObject.SetActive(true);
+                GameManager.Instance.Score.text = "100";
+                GameManager.Instance.BestScore.text = "100";
+                GameManager.Instance.Destroy.text = "10";
+            }
+            else
+            {
+                GameManager.Instance.playerKill++;
+                GameManager.Instance.GetExp(10);
+                int itemIndex = Random.Range(0, 3);
+                Instantiate(item[itemIndex]).transform.position = transform.position;
+                m_die = true;
+                //+유닛 죽는 애니메이션 ,사운드
+                Destroy(gameObject, 0.3f);
+            }
         }
         else
         {
